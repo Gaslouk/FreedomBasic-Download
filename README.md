@@ -1,51 +1,59 @@
-Freedom Basic
+# Freedom Basic
 
-Ελληνικά | English
+Freedom Basic is a BASIC interpreter and IDE for Windows that aims to be compatible with **Liberty BASIC 4.5.1**. Existing Liberty BASIC programs (windows, graphicboxes, dialogs, files and the usual statements) are meant to run as they are. Compatibility is checked by comparing Freedom Basic's behaviour with the real Liberty BASIC.
 
-Ένας interpreter και IDE συμβατός με Liberty BASIC 4.5.1, για Windows (32-bit και 64-bit).
+**Free to try for one year.** See [Licensing](#licensing) below.
 
-Λήψη
+## Download
 
-Πάρε το τελευταίο exe από τα Releases:
+Get the latest files from the [Releases](../../releases) page:
 
-FreedomBasic64bit.exe για 64-bit Windows (οι περισσότεροι υπολογιστές)
-FreedomBasic32bit.exe για 32-bit Windows
+| File | What it is |
+|---|---|
+| `FreedomBasic64.exe` | The IDE, 64-bit (recommended) |
+| `FreedomBasic32.exe` | The IDE, 32-bit |
+| `FreedomDesigner.*_LB.zip` | The form designer, with its `icons` folder |
 
-Δεν χρειάζεται εγκατάσταση: κατεβάζεις και τρέχεις.
+No installation is needed, and the Microsoft Visual C++ Redistributable is **not** required. Save the exe anywhere and run it.
 
-Shareware
-30 ημέρες δωρεάν δοκιμή με πλήρη λειτουργία.
-Μετά τη λήξη, το πρόγραμμα ανοίγει μόνο για ανάγνωση (χωρίς Run, Compile, Save).
-Για πλήρη λειτουργία: Tools → Activate… Δώσε τον κωδικό υπολογιστή που εμφανίζεται στον προμηθευτή και γράψε το κλειδί που θα πάρεις.
-Διαθέσιμες άδειες: 2 έτη ή εφόρου ζωής.
-Το κλειδί ισχύει μόνο για τον υπολογιστή που το ζήτησε.
-Επικοινωνία
+## Features
 
-info@e-loukakis.gr
+- IDE with editor, Run and Debug
+- `$INCLUDE` support
+- Builds standalone `.exe` files from your programs (licensed versions, and during the free year)
+- A form designer written in Freedom Basic itself (see below)
 
-Ο πηγαίος κώδικας δεν δημοσιεύεται.
+## Freedom Designer
 
-English
+The designer lets you place controls on a form with the mouse and generates the Liberty BASIC code for it.
 
-A Liberty BASIC 4.5.1 compatible interpreter and IDE for Windows (32-bit and 64-bit).
+1. Unzip `FreedomDesigner.*_LB.zip`. Keep the `icons` folder **next to** the designer, with its `.bmp` files directly inside it. Without it the palette still works, but without pictures.
+2. Run the designer with Freedom Basic. It uses a few Freedom Basic extensions, so it does **not** run on Liberty BASIC.
+3. Drag the splitter above the code tabs to resize the code pane.
 
-Download
+## Licensing
 
-Get the latest exe from the Releases page:
+| | First year | After the first year, without a license | With a license |
+|---|---|---|---|
+| Run programs | any size | up to **1800 lines** | any size |
+| Create `.exe` | yes | no | yes |
 
-FreedomBasic64bit.exe for 64-bit Windows (most computers)
-FreedomBasic32bit.exe for 32-bit Windows
+- The first year starts when you first run Freedom Basic.
+- Lines are counted in the expanded program (the main file plus everything it loads with `$INCLUDE`), including blank lines and comments.
+- Programs and `.exe` files **you** create belong entirely to you. You may distribute and sell them freely, with no royalties or other obligation.
+- A license covers one user and one computer. Each extra computer of the same user gets a 30% discount.
+- Planned licenses: **2 years, 30 EUR**, or **lifetime, 50 EUR**, valid for the major version you buy. They are not on sale yet; details will be announced here.
 
-No installation needed: download and run.
+The full terms are a draft and are not final.
 
-Shareware
-30-day free trial with full functionality.
-After the trial ends, the program opens in read-only mode (no Run, Compile or Save).
-For full functionality: Tools → Activate… Send the computer code shown there to the vendor and enter the key you receive.
-Available licenses: 2 years or lifetime.
-A key is valid only for the computer it was issued for.
-Contact
+## Known limitations
 
+- Freedom Basic is under active development. Differences from Liberty BASIC are possible; bug reports and short test programs that behave differently from Liberty BASIC are very welcome.
+- A Linux version exists but is not part of these downloads yet.
+
+## Contact
+
+Questions and bug reports: info@e-loukakis.gr
 info@e-loukakis.gr
 
 The source code is not published.
