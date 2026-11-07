@@ -12,7 +12,8 @@ Get the latest files from the [Releases](../../releases) page:
 |---|---|
 | `FreedomBasic64.exe` | The IDE, 64-bit (recommended) |
 | `FreedomBasic32.exe` | The IDE, 32-bit |
-| `FreedomDesigner.*_LB.zip` | The form designer, with its `icons` folder |
+| `FreedomBasic_Linux_b638.tar.gz` | Linux (x86-64): runs programs, includes the Designer, no editor window |
+| `FreedomDesigner.1.42_LB.zip` | The form designer, with its `icons` folder |
 
 No installation is needed, and the Microsoft Visual C++ Redistributable is **not** required. Save the exe anywhere and run it.
 
@@ -22,6 +23,16 @@ No installation is needed, and the Microsoft Visual C++ Redistributable is **not
 - `$INCLUDE` support
 - Builds standalone `.exe` files from your programs (licensed versions, and during the free year)
 - A form designer written in Freedom Basic itself (see below)
+
+## Linux
+
+```
+tar xzf FreedomBasic_Linux_b638.tar.gz
+cd FreedomBasic_Linux_b638
+./freedom program.bas
+```
+
+The package includes the SDL3 libraries, the Designer (`./freedom-designer`) and an example game. It needs a 64-bit Linux desktop. The Linux package runs programs; it has no editor window and no license limits.
 
 ## Freedom Designer
 
@@ -49,10 +60,7 @@ The full terms are a draft and are not final.
 ## Known limitations
 
 - Freedom Basic is under active development. Differences from Liberty BASIC are possible; bug reports and short test programs that behave differently from Liberty BASIC are very welcome.
-- A Linux version exists but is not part of these downloads yet.
 
 ## Contact
 
 Questions and bug reports: info@e-loukakis.gr
-
-The source code is not published.
