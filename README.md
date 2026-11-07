@@ -54,6 +54,5 @@ The full terms are a draft and are not final.
 ## Contact
 
 Questions and bug reports: info@e-loukakis.gr
-info@e-loukakis.gr
 
 The source code is not published.
