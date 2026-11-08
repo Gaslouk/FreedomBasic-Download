@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Procedures</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:1em auto;padding:0 1em;color:#222}
+h1{border-bottom:2px solid #08c}h2{margin-top:1.6em;border-bottom:1px solid #ccc}
+pre{background:#f4f4f4;padding:.6em;overflow:auto;border-left:3px solid #08c}
+pre.out{border-left-color:#2a2;background:#f0f8f0}.syn{font-family:Consolas,monospace;background:#eef;padding:.2em .4em}
+.el{display:none}body.lang-el .el{display:block}body.lang-el .en{display:none}
+nav a{margin-right:.8em}.foot{margin-top:3em;color:#777;font-size:.8em}.bar{float:right}
+.warn{color:#a50}</style><script>function L(l){document.body.className='lang-'+l}</script></head><body class="lang-en">
+<div class="bar"><a href="#" onclick="L('en');return false">English</a> | <a href="#" onclick="L('el');return false">Ελληνικά</a></div>
+<nav><a href="index.html">Index</a></nav><h1>Procedures</h1><h2 id="function_end_function">FUNCTION / END FUNCTION</h2><p><span class="syn">FUNCTION name(param1, param2) ... name = value ... END FUNCTION</span></p><div class="en"><p>Defines a function that returns a value. Assign the result to the function&#x27;s own name before END FUNCTION. Call it inside an expression.</p></div><div class="el"><p>Ορίζει συνάρτηση που επιστρέφει τιμή. Αναθέστε το αποτέλεσμα στο όνομα της ίδιας της συνάρτησης πριν το END FUNCTION. Καλείται μέσα σε έκφραση.</p></div><pre>print square(6)
+end
+function square(n)
+    square = n * n
+end function</pre><pre class="out">36</pre><h2 id="sub_end_sub_call">SUB / END SUB / CALL</h2><p><span class="syn">SUB name param1, param2 ... END SUB   |   CALL name arg1, arg2</span></p><div class="en"><p>Defines a subroutine with its own local variables and calls it with CALL. Parameters are passed by value unless declared BYREF.</p></div><div class="el"><p>Ορίζει υπορουτίνα με δικές της τοπικές μεταβλητές και την καλεί με CALL. Οι παράμετροι περνούν κατά τιμή εκτός αν δηλωθούν BYREF.</p></div><pre>call greet &quot;Ann&quot;
+end
+sub greet who$
+    print &quot;Hello, &quot;; who$
+end sub</pre><pre class="out">Hello, Ann</pre>
+<div class="foot">Freedom Basic help - build 652 - generated 2026-11-08</div></body></html>

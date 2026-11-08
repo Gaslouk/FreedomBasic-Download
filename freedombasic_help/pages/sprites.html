@@ -1,0 +1,92 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Sprites</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:1em auto;padding:0 1em;color:#222}
+h1{border-bottom:2px solid #08c}h2{margin-top:1.6em;border-bottom:1px solid #ccc}
+pre{background:#f4f4f4;padding:.6em;overflow:auto;border-left:3px solid #08c}
+pre.out{border-left-color:#2a2;background:#f0f8f0}.syn{font-family:Consolas,monospace;background:#eef;padding:.2em .4em}
+.el{display:none}body.lang-el .el{display:block}body.lang-el .en{display:none}
+nav a{margin-right:.8em}.foot{margin-top:3em;color:#777;font-size:.8em}.bar{float:right}
+.warn{color:#a50}</style><script>function L(l){document.body.className='lang-'+l}</script></head><body class="lang-en">
+<div class="bar"><a href="#" onclick="L('en');return false">English</a> | <a href="#" onclick="L('el');return false">Ελληνικά</a></div>
+<nav><a href="index.html">Index</a></nav><h1>Sprites</h1><h2 id="addsprite">ADDSPRITE</h2><p><span class="syn">PRINT #g, &quot;addsprite name bmpname&quot;</span></p><div class="en"><p>Creates a sprite called name from a loaded image.</p></div><div class="el"><p>Δημιουργεί sprite με όνομα name από μια φορτωμένη εικόνα.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill white&quot;
+print #g, &quot;getbmp a 0 0 8 8&quot;
+bmpsave &quot;a&quot;, &quot;sp.bmp&quot;
+loadbmp &quot;q&quot;, &quot;sp.bmp&quot;
+print #g, &quot;addsprite s q&quot;
+print #g, &quot;spritexy s 10 20&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="drawsprites">DRAWSPRITES</h2><p><span class="syn">PRINT #g, &quot;drawsprites&quot;</span></p><div class="en"><p>Draws all sprites and applies their movement.</p></div><div class="el"><p>Σχεδιάζει όλα τα sprites και εφαρμόζει την κίνησή τους.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill white&quot;
+print #g, &quot;getbmp a 0 0 8 8&quot;
+bmpsave &quot;a&quot;, &quot;sp.bmp&quot;
+loadbmp &quot;q&quot;, &quot;sp.bmp&quot;
+print #g, &quot;addsprite s q&quot;
+print #g, &quot;drawsprites&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="removesprite">REMOVESPRITE</h2><p><span class="syn">PRINT #g, &quot;removesprite name&quot;</span></p><div class="en"><p>Deletes a sprite.</p></div><div class="el"><p>Διαγράφει ένα sprite.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill white&quot;
+print #g, &quot;getbmp a 0 0 8 8&quot;
+bmpsave &quot;a&quot;, &quot;sp.bmp&quot;
+loadbmp &quot;q&quot;, &quot;sp.bmp&quot;
+print #g, &quot;addsprite s q&quot;
+print #g, &quot;removesprite s&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="spritecollides">SPRITECOLLIDES</h2><p><span class="syn">PRINT #g, &quot;spritecollides name var$&quot;</span></p><div class="en"><p>Puts in var$ the names of the sprites that overlap this sprite.</p></div><div class="el"><p>Βάζει στο var$ τα ονόματα των sprites που επικαλύπτουν αυτό το sprite.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill white&quot;
+print #g, &quot;getbmp a 0 0 8 8&quot;
+bmpsave &quot;a&quot;, &quot;sp.bmp&quot;
+loadbmp &quot;q&quot;, &quot;sp.bmp&quot;
+print #g, &quot;addsprite s q&quot;
+print #g, &quot;addsprite t q&quot;
+print #g, &quot;spritexy s 10 10&quot;
+print #g, &quot;spritexy t 12 12&quot;
+print #g, &quot;spritecollides s c$&quot;
+print c$
+print &quot;drawn&quot;</pre><pre class="out">t
+drawn</pre><h2 id="spritemovexy">SPRITEMOVEXY</h2><p><span class="syn">PRINT #g, &quot;spritemovexy name dx dy&quot;</span></p><div class="en"><p>Gives the sprite a velocity. The sprite only moves when DRAWSPRITES is called.</p></div><div class="el"><p>Δίνει στο sprite ταχύτητα. Το sprite κινείται μόνο όταν κληθεί το DRAWSPRITES.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill white&quot;
+print #g, &quot;getbmp a 0 0 8 8&quot;
+bmpsave &quot;a&quot;, &quot;sp.bmp&quot;
+loadbmp &quot;q&quot;, &quot;sp.bmp&quot;
+print #g, &quot;addsprite s q&quot;
+print #g, &quot;spritemovexy s 2 1&quot;
+print #g, &quot;drawsprites&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="spriteorient">SPRITEORIENT</h2><p><span class="syn">PRINT #g, &quot;spriteorient name rotate90|rotate180|rotate270|normal&quot;</span></p><div class="en"><p>Rotates or flips a sprite.</p></div><div class="el"><p>Περιστρέφει ή αναστρέφει ένα sprite.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill white&quot;
+print #g, &quot;getbmp a 0 0 8 8&quot;
+bmpsave &quot;a&quot;, &quot;sp.bmp&quot;
+loadbmp &quot;q&quot;, &quot;sp.bmp&quot;
+print #g, &quot;addsprite s q&quot;
+print #g, &quot;spriteorient s rotate90&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="spritescale">SPRITESCALE</h2><p><span class="syn">PRINT #g, &quot;spritescale name percent&quot;</span></p><div class="en"><p>Sets the size of a sprite as a percentage (100 = normal).</p></div><div class="el"><p>Ορίζει το μέγεθος ενός sprite ως ποσοστό (100 = κανονικό).</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill white&quot;
+print #g, &quot;getbmp a 0 0 8 8&quot;
+bmpsave &quot;a&quot;, &quot;sp.bmp&quot;
+loadbmp &quot;q&quot;, &quot;sp.bmp&quot;
+print #g, &quot;addsprite s q&quot;
+print #g, &quot;spritescale s 200&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="spritevisible">SPRITEVISIBLE</h2><p><span class="syn">PRINT #g, &quot;spritevisible name on|off&quot;</span></p><div class="en"><p>Shows or hides a sprite.</p></div><div class="el"><p>Εμφανίζει ή κρύβει ένα sprite.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill white&quot;
+print #g, &quot;getbmp a 0 0 8 8&quot;
+bmpsave &quot;a&quot;, &quot;sp.bmp&quot;
+loadbmp &quot;q&quot;, &quot;sp.bmp&quot;
+print #g, &quot;addsprite s q&quot;
+print #g, &quot;spritevisible s off&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="spritexy_spritexy_q">SPRITEXY / SPRITEXY?</h2><p><span class="syn">PRINT #g, &quot;spritexy name x y&quot; / &quot;spritexy? name x y&quot;</span></p><div class="en"><p>spritexy puts the sprite at x y. spritexy? reads its position into the variables x and y.</p></div><div class="el"><p>Το spritexy βάζει το sprite στο x y. Το spritexy? διαβάζει τη θέση του στις μεταβλητές x και y.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill white&quot;
+print #g, &quot;getbmp a 0 0 8 8&quot;
+bmpsave &quot;a&quot;, &quot;sp.bmp&quot;
+loadbmp &quot;q&quot;, &quot;sp.bmp&quot;
+print #g, &quot;addsprite s q&quot;
+print #g, &quot;spritexy s 10 20&quot;
+print #g, &quot;spritexy? s x y&quot;
+print x; &quot; &quot;; y
+print &quot;drawn&quot;</pre><pre class="out">10 20
+drawn</pre>
+<div class="foot">Freedom Basic help - build 652 - generated 2026-11-08</div></body></html>

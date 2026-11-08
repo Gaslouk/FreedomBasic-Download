@@ -1,0 +1,91 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Graphics</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:1em auto;padding:0 1em;color:#222}
+h1{border-bottom:2px solid #08c}h2{margin-top:1.6em;border-bottom:1px solid #ccc}
+pre{background:#f4f4f4;padding:.6em;overflow:auto;border-left:3px solid #08c}
+pre.out{border-left-color:#2a2;background:#f0f8f0}.syn{font-family:Consolas,monospace;background:#eef;padding:.2em .4em}
+.el{display:none}body.lang-el .el{display:block}body.lang-el .en{display:none}
+nav a{margin-right:.8em}.foot{margin-top:3em;color:#777;font-size:.8em}.bar{float:right}
+.warn{color:#a50}</style><script>function L(l){document.body.className='lang-'+l}</script></head><body class="lang-en">
+<div class="bar"><a href="#" onclick="L('en');return false">English</a> | <a href="#" onclick="L('el');return false">Ελληνικά</a></div>
+<nav><a href="index.html">Index</a></nav><h1>Graphics</h1><h2 id="box_boxfilled">box / boxfilled</h2><p><span class="syn">PRINT #g, &quot;box x y&quot; / &quot;boxfilled x y&quot;</span></p><div class="en"><p>Draws a rectangle from the current position to x y. box draws only the outline in the pen colour. boxfilled also fills it with the backcolor.</p></div><div class="el"><p>Σχεδιάζει ορθογώνιο από την τρέχουσα θέση ως το x y. Το box σχεδιάζει μόνο το περίγραμμα με το χρώμα του στυλό. Το boxfilled το γεμίζει επιπλέον με το backcolor.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;color red&quot;
+print #g, &quot;backcolor yellow&quot;
+print #g, &quot;place 10 10&quot;
+print #g, &quot;boxfilled 80 60&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="circle_circlefilled">circle / circlefilled</h2><p><span class="syn">PRINT #g, &quot;circle r&quot; / &quot;circlefilled r&quot;</span></p><div class="en"><p>Draws a circle of radius r centred on the current position. circlefilled fills it with the backcolor.</p></div><div class="el"><p>Σχεδιάζει κύκλο ακτίνας r με κέντρο την τρέχουσα θέση. Το circlefilled τον γεμίζει με το backcolor.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;color blue&quot;
+print #g, &quot;backcolor cyan&quot;
+print #g, &quot;place 60 60&quot;
+print #g, &quot;circlefilled 25&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="color_backcolor">color / backcolor</h2><p><span class="syn">PRINT #g, &quot;color name|r g b&quot; / &quot;backcolor name|r g b&quot;</span></p><div class="en"><p>color sets the pen colour (lines and outlines), backcolor sets the fill colour used by the filled shapes. A colour is a name (red, green, blue, yellow, cyan, pink, brown, black, white, darkred, lightgray, palegray...) or three numbers 0-255.</p></div><div class="el"><p>Το color ορίζει το χρώμα του στυλό (γραμμές και περιγράμματα), το backcolor το χρώμα γεμίσματος των γεμάτων σχημάτων. Το χρώμα είναι όνομα (red, green, blue, yellow, cyan, pink, brown, black, white, darkred, lightgray, palegray...) ή τρεις αριθμοί 0-255.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;color red&quot;
+print #g, &quot;backcolor 0 255 0&quot;
+print #g, &quot;place 10 10&quot;
+print #g, &quot;boxfilled 60 60&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="ellipse_ellipsefilled">ellipse / ellipsefilled</h2><p><span class="syn">PRINT #g, &quot;ellipse width height&quot; / &quot;ellipsefilled width height&quot;</span></p><div class="en"><p>Draws an ellipse of the given width and height at the current position. ellipsefilled fills it.</p></div><div class="el"><p>Σχεδιάζει έλλειψη με το δοσμένο πλάτος και ύψος στην τρέχουσα θέση. Το ellipsefilled την γεμίζει.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;color darkred&quot;
+print #g, &quot;place 40 40&quot;
+print #g, &quot;ellipse 50 20&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="fill">fill</h2><p><span class="syn">PRINT #g, &quot;fill colour&quot;</span></p><div class="en"><p>Fills the whole window with a colour.</p></div><div class="el"><p>Γεμίζει όλο το παράθυρο με ένα χρώμα.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill blue&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="flush_redraw_cls_discard">flush / redraw / cls / discard</h2><p><span class="syn">PRINT #g, &quot;flush&quot; / &quot;redraw&quot; / &quot;cls&quot; / &quot;discard&quot;</span></p><div class="en"><p>flush makes the drawing permanent in the window. cls clears the window. discard throws away the drawing segments created so far.</p></div><div class="el"><p>Το flush κάνει το σχέδιο μόνιμο στο παράθυρο. Το cls καθαρίζει το παράθυρο. Το discard πετάει τα τμήματα σχεδίου που έχουν δημιουργηθεί.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill red&quot;
+print #g, &quot;flush&quot;
+print #g, &quot;cls&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="getbmp_drawbmp">getbmp / drawbmp</h2><p><span class="syn">PRINT #g, &quot;getbmp name x y w h&quot; / &quot;drawbmp name x y&quot;</span></p><div class="en"><p>getbmp copies an area of the window into an image called name. drawbmp draws a stored image at x y.</p></div><div class="el"><p>Το getbmp αντιγράφει μια περιοχή του παραθύρου σε εικόνα με το όνομα name. Το drawbmp σχεδιάζει μια αποθηκευμένη εικόνα στο x y.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill red&quot;
+print #g, &quot;getbmp a 0 0 20 20&quot;
+print #g, &quot;drawbmp a 50 50&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="open_for_graphics">OPEN ... FOR GRAPHICS</h2><p><span class="syn">OPEN &quot;title&quot; FOR GRAPHICS AS #g</span></p><div class="en"><p>Opens a graphics window. Drawing commands are then sent to it with PRINT #g, &quot;command&quot;. Close it with CLOSE #g.</p></div><div class="el"><p>Ανοίγει παράθυρο γραφικών. Οι εντολές σχεδίασης στέλνονται με PRINT #g, &quot;εντολή&quot;. Κλείνει με CLOSE #g.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;down&quot;
+print #g, &quot;fill white&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="place_goto_line">place / goto / line</h2><p><span class="syn">PRINT #g, &quot;place x y&quot; / &quot;goto x y&quot; / &quot;line x y&quot;</span></p><div class="en"><p>place moves the pen without drawing. goto draws a line from the current position to x y when the pen is down. line x y draws from the current position to x y. The pen must be down (command down).</p></div><div class="el"><p>Το place μετακινεί το στυλό χωρίς σχέδιο. Το goto σχεδιάζει γραμμή από την τρέχουσα θέση στο x y όταν το στυλό είναι κάτω. Το line x y σχεδιάζει από την τρέχουσα θέση στο x y. Το στυλό πρέπει να είναι κάτω (εντολή down).</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;down&quot;
+print #g, &quot;color black&quot;
+print #g, &quot;place 10 10&quot;
+print #g, &quot;goto 90 10&quot;
+print #g, &quot;line 90 90&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="posxy_q">posxy?</h2><p><span class="syn">PRINT #g, &quot;posxy? x y&quot;</span></p><div class="en"><p>Reads the current pen position into the variables x and y.</p></div><div class="el"><p>Διαβάζει την τρέχουσα θέση του στυλό στις μεταβλητές x και y.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;place 12 34&quot;
+print #g, &quot;posxy? x y&quot;
+print x; &quot; &quot;; y</pre><p class="warn"><i>Not run in the automatic check: the Linux build used for checking returns 0 0 here; run it in the Windows build</i></p><h2 id="set">set</h2><p><span class="syn">PRINT #g, &quot;set x y&quot;</span></p><div class="en"><p>Sets one pixel at x y to the pen colour.</p></div><div class="el"><p>Βάζει ένα pixel στο x y με το χρώμα του στυλό.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;color black&quot;
+print #g, &quot;set 5 5&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="size">size</h2><p><span class="syn">PRINT #g, &quot;size n&quot;</span></p><div class="en"><p>Sets the pen thickness in pixels.</p></div><div class="el"><p>Ορίζει το πάχος του στυλό σε pixels.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;size 4&quot;
+print #g, &quot;place 10 10&quot;
+print #g, &quot;goto 90 10&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="text_in_graphics">Text in graphics</h2><p><span class="syn">PRINT #g, &quot;\text&quot; / &quot;|text&quot; / &quot;font name size&quot;</span></p><div class="en"><p>A string that starts with a backslash is drawn as text at the current position. font sets the typeface and size first.</p></div><div class="el"><p>Ένα κείμενο που ξεκινά με backslash σχεδιάζεται ως κείμενο στην τρέχουσα θέση. Το font ορίζει πρώτα γραμματοσειρά και μέγεθος.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;font arial 14&quot;
+print #g, &quot;place 10 30&quot;
+print #g, &quot;\Hello&quot;
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="trapclose">trapclose</h2><p><span class="syn">PRINT #g, &quot;trapclose [label]&quot;</span></p><div class="en"><p>Runs the code at [label] when the user closes the window, instead of closing it at once.</p></div><div class="el"><p>Εκτελεί τον κώδικα στο [label] όταν ο χρήστης κλείσει το παράθυρο, αντί να κλείσει αμέσως.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;trapclose [bye]&quot;
+goto [skip]
+[bye]
+close #g
+end
+[skip]
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre><h2 id="when">when</h2><p><span class="syn">PRINT #g, &quot;when event [label]&quot;</span></p><div class="en"><p>Calls a branch label when an event happens: leftButtonDown, leftButtonUp, rightButtonDown, mouseMove, characterInput. Use WAIT to keep the program alive.</p></div><div class="el"><p>Καλεί μια ετικέτα όταν συμβεί ένα γεγονός: leftButtonDown, leftButtonUp, rightButtonDown, mouseMove, characterInput. Χρησιμοποίησε WAIT για να μείνει ζωντανό το πρόγραμμα.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;when leftButtonDown [click]&quot;
+goto [skip]
+[click]
+wait
+[skip]
+print &quot;drawn&quot;</pre><pre class="out">drawn</pre>
+<div class="foot">Freedom Basic help - build 652 - generated 2026-11-08</div></body></html>

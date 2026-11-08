@@ -1,0 +1,49 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Extras and QB64 functions</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:1em auto;padding:0 1em;color:#222}
+h1{border-bottom:2px solid #08c}h2{margin-top:1.6em;border-bottom:1px solid #ccc}
+pre{background:#f4f4f4;padding:.6em;overflow:auto;border-left:3px solid #08c}
+pre.out{border-left-color:#2a2;background:#f0f8f0}.syn{font-family:Consolas,monospace;background:#eef;padding:.2em .4em}
+.el{display:none}body.lang-el .el{display:block}body.lang-el .en{display:none}
+nav a{margin-right:.8em}.foot{margin-top:3em;color:#777;font-size:.8em}.bar{float:right}
+.warn{color:#a50}</style><script>function L(l){document.body.className='lang-'+l}</script></head><body class="lang-en">
+<div class="bar"><a href="#" onclick="L('en');return false">English</a> | <a href="#" onclick="L('el');return false">Ελληνικά</a></div>
+<nav><a href="index.html">Index</a></nav><h1>Extras and QB64 functions</h1><h2 id="bin_str_hex_str_oct_str">_BIN$ / HEX$ / OCT$</h2><p><span class="syn">_BIN$(n) / HEX$(n) / OCT$(n)</span></p><div class="en"><p>Return n as binary, hexadecimal or octal text.</p></div><div class="el"><p>Επιστρέφουν το n ως δυαδικό, δεκαεξαδικό ή οκταδικό κείμενο.</p></div><pre>print _bin$(5)
+print hex$(255)
+print oct$(8)</pre><pre class="out">101
+FF
+10</pre><h2 id="delay_limit_title">_DELAY / _LIMIT / _TITLE</h2><p><span class="syn">_DELAY seconds / _LIMIT fps / _TITLE &quot;text&quot;</span></p><div class="en"><p>_DELAY pauses; _LIMIT caps a loop at a number of passes per second; _TITLE sets the window title.</p></div><div class="el"><p>Το _DELAY κάνει παύση· το _LIMIT περιορίζει έναν βρόχο σε επαναλήψεις ανά δευτερόλεπτο· το _TITLE ορίζει τον τίτλο του παραθύρου.</p></div><pre>_title &quot;Demo&quot;
+_delay 0.01
+_limit 100
+print &quot;ok&quot;</pre><pre class="out">ok</pre><h2 id="newimage_screen">_NEWIMAGE / SCREEN</h2><p><span class="syn">s = _NEWIMAGE(w, h, 32) : SCREEN s</span></p><div class="en"><p>Creates a drawing surface and makes it the screen. After SCREEN, PRINT writes on the graphics screen, not the text window.</p></div><div class="el"><p>Δημιουργεί επιφάνεια σχεδίασης και την κάνει οθόνη. Μετά το SCREEN το PRINT γράφει στην οθόνη γραφικών, όχι στο παράθυρο κειμένου.</p></div><pre>s = _newimage(200, 100, 32)
+screen s
+print &quot;hello&quot;</pre><p class="warn"><i>Not run in the automatic check: after SCREEN the text goes to the graphics window, which the automatic check cannot capture</i></p><h2 id="red32_green32_blue32">_RED32 / _GREEN32 / _BLUE32</h2><p><span class="syn">_RED32(c) / _GREEN32(c) / _BLUE32(c)</span></p><div class="en"><p>Extract one colour component from a packed colour.</p></div><div class="el"><p>Εξάγουν ένα συστατικό χρώματος από πακεταρισμένο χρώμα.</p></div><pre>c = _rgb(1, 2, 3)
+print _red32(c); _green32(c); _blue32(c)</pre><pre class="out">123</pre><h2 id="rgb_rgba">_RGB / _RGBA</h2><p><span class="syn">_RGB(r, g, b) / _RGBA(r, g, b, a)</span></p><div class="en"><p>Pack a colour into one number. _RGB(r,g,b) equals r*65536 + g*256 + b. _RGBA adds the alpha (transparency) value.</p></div><div class="el"><p>Συμπιέζουν ένα χρώμα σε έναν αριθμό. Το _RGB(r,g,b) ισούται με r*65536 + g*256 + b. Το _RGBA προσθέτει την τιμή alpha (διαφάνεια).</p></div><pre>print _rgb(255, 0, 0)
+print _rgb(1, 2, 3)</pre><pre class="out">16711680
+66051</pre><h2 id="shl_shr_rol_ror">_SHL / _SHR / _ROL / _ROR</h2><p><span class="syn">_SHL(n, k) / _SHR(n, k) / _ROL(n, k) / _ROR(n, k)</span></p><div class="en"><p>Shift or rotate the bits of a number left or right by k places.</p></div><div class="el"><p>Ολισθαίνουν ή περιστρέφουν τα bits ενός αριθμού αριστερά ή δεξιά κατά k θέσεις.</p></div><pre>print _shl(1, 3)
+print _shr(8, 2)</pre><pre class="out">8
+2</pre><h2 id="calldll">CALLDLL</h2><p><span class="syn">CALLDLL #lib, &quot;function&quot;, arg AS type, result AS type</span></p><div class="en"><p>Calls a function of a Windows DLL. Only meaningful in the Windows build.</p></div><div class="el"><p>Καλεί συνάρτηση από Windows DLL. Έχει νόημα μόνο στο Windows build.</p></div><pre>calldll #kernel32, &quot;GetTickCount&quot;, r as long
+print r &gt; 0</pre><p class="warn"><i>Not run in the automatic check: works only in the Windows build</i></p><h2 id="chdir_dir_str_defaultdir_str_startupdir_str">CHDIR / DIR$ / DEFAULTDIR$ / STARTUPDIR$</h2><p><span class="syn">CHDIR &quot;folder&quot; / DIR$() / DEFAULTDIR$ / STARTUPDIR$</span></p><div class="en"><p>CHDIR changes the current folder. DIR$() returns the current folder, DEFAULTDIR$ the default one and STARTUPDIR$ the folder the program started from.</p></div><div class="el"><p>Το CHDIR αλλάζει τον τρέχοντα φάκελο. Το DIR$() επιστρέφει τον τρέχοντα φάκελο, το DEFAULTDIR$ τον προεπιλεγμένο και το STARTUPDIR$ τον φάκελο εκκίνησης.</p></div><pre>chdir &quot;.&quot;
+print len(dir$()) &gt; 0
+print len(defaultdir$) &gt; 0
+print len(startupdir$) &gt; 0</pre><pre class="out">1
+1
+1</pre><h2 id="colordialog">COLORDIALOG</h2><p><span class="syn">COLORDIALOG &quot;default&quot;, result$</span></p><div class="en"><p>Shows a colour picker. result$ receives the chosen colour.</p></div><div class="el"><p>Εμφανίζει επιλογέα χρώματος. Το result$ παίρνει το χρώμα που επιλέχθηκε.</p></div><pre>colordialog &quot;red&quot;, c$
+print c$</pre><p class="warn"><i>Not run in the automatic check: opens a dialog box</i></p><h2 id="defint_defstr_defdbl">DEFINT / DEFSTR / DEFDBL</h2><p><span class="syn">DEFINT letter-range / DEFSTR letter-range / DEFDBL letter-range</span></p><div class="en"><p>Accepted for QB64 programs. Variables keep working as before: Freedom stores numbers as double precision and strings by the $ suffix.</p></div><div class="el"><p>Γίνονται δεκτά για προγράμματα QB64. Οι μεταβλητές δουλεύουν όπως πριν: το Freedom κρατά τους αριθμούς σε διπλή ακρίβεια και τα κείμενα με την κατάληξη $.</p></div><pre>defint a-z
+a = 3
+print a
+defdbl d
+d = 1 / 3
+print d</pre><pre class="out">3
+0.33333333</pre><h2 id="displaywidth_displayheight">DISPLAYWIDTH / DISPLAYHEIGHT</h2><p><span class="syn">DISPLAYWIDTH / DISPLAYHEIGHT</span></p><div class="en"><p>Size of the screen in pixels.</p></div><div class="el"><p>Μέγεθος της οθόνης σε pixels.</p></div><pre>print displaywidth &gt; 0
+print displayheight &gt; 0</pre><pre class="out">1
+1</pre><h2 id="lprint">LPRINT</h2><p><span class="syn">LPRINT expression</span></p><div class="en"><p>Sends text to the default printer.</p></div><div class="el"><p>Στέλνει κείμενο στον προεπιλεγμένο εκτυπωτή.</p></div><pre>lprint &quot;Hello printer&quot;</pre><p class="warn"><i>Not run in the automatic check: sends text to the printer</i></p><h2 id="mousex_mousey">MOUSEX / MOUSEY</h2><p><span class="syn">MOUSEX / MOUSEY</span></p><div class="en"><p>Mouse position inside the active window.</p></div><div class="el"><p>Θέση του ποντικιού μέσα στο ενεργό παράθυρο.</p></div><pre>print mousex; mousey</pre><p class="warn"><i>Not run in the automatic check: the position depends on the mouse</i></p><h2 id="peek_poke">PEEK / POKE</h2><p><span class="syn">POKE address, value / PEEK(address)</span></p><div class="en"><p>Stores and reads a byte in a small memory area of the program.</p></div><div class="el"><p>Αποθηκεύει και διαβάζει ένα byte σε μια μικρή περιοχή μνήμης του προγράμματος.</p></div><pre>poke 100, 5
+print peek(100)</pre><pre class="out">5</pre><h2 id="playmidi_stopmidi">PLAYMIDI / STOPMIDI</h2><p><span class="syn">PLAYMIDI &quot;file.mid&quot; / STOPMIDI</span></p><div class="en"><p>Plays a MIDI music file in the background; STOPMIDI stops it.</p></div><div class="el"><p>Παίζει αρχείο μουσικής MIDI στο παρασκήνιο· το STOPMIDI το σταματά.</p></div><pre>playmidi &quot;song.mid&quot;
+stopmidi
+print &quot;called&quot;</pre><p class="warn"><i>Not run in the automatic check: needs a MIDI file and sound output</i></p><h2 id="shell_run">SHELL / RUN</h2><p><span class="syn">SHELL &quot;command&quot; / RUN &quot;program&quot;</span></p><div class="en"><p>Runs an operating system command or another program.</p></div><div class="el"><p>Εκτελεί εντολή του λειτουργικού ή άλλο πρόγραμμα.</p></div><pre>shell &quot;echo hi&quot;
+print &quot;back&quot;</pre><p class="warn"><i>Not run in the automatic check: output depends on the operating system</i></p><h2 id="sleep">SLEEP</h2><p><span class="syn">SLEEP seconds</span></p><div class="en"><p>Pauses the program for the given number of seconds.</p></div><div class="el"><p>Σταματά το πρόγραμμα για τα δοσμένα δευτερόλεπτα.</p></div><pre>sleep 1
+print &quot;awake&quot;</pre><pre class="out">awake</pre><h2 id="version_str_command_str">VERSION$ / COMMAND$</h2><p><span class="syn">VERSION$ / COMMAND$</span></p><div class="en"><p>VERSION$ returns the Liberty BASIC version being imitated. COMMAND$ returns the command line given to the program.</p></div><div class="el"><p>Το VERSION$ επιστρέφει την έκδοση του Liberty BASIC που μιμείται. Το COMMAND$ επιστρέφει τη γραμμή εντολών του προγράμματος.</p></div><pre>print version$
+print len(command$)</pre><pre class="out">4.5.1
+0</pre><h2 id="window_qb64_form">WINDOW (QB64 form)</h2><p><span class="syn">WINDOW (x1, y1)-(x2, y2)</span></p><div class="en"><p>Sets your own coordinate system for the QB64 graphics screen (after SCREEN or _NEWIMAGE).</p></div><div class="el"><p>Ορίζει δικό σου σύστημα συντεταγμένων για την οθόνη γραφικών της QB64 (μετά από SCREEN ή _NEWIMAGE).</p></div><pre>screen 12
+window (0, 0)-(100, 100)
+pset (50, 50)</pre><p class="warn"><i>Not run in the automatic check: it changes the coordinates of the graphics screen, so the text output cannot be captured by the automatic check</i></p>
+<div class="foot">Freedom Basic help - build 652 - generated 2026-11-08</div></body></html>

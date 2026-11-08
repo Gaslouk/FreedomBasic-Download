@@ -1,0 +1,34 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Bits, hashes and colours</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:1em auto;padding:0 1em;color:#222}
+h1{border-bottom:2px solid #08c}h2{margin-top:1.6em;border-bottom:1px solid #ccc}
+pre{background:#f4f4f4;padding:.6em;overflow:auto;border-left:3px solid #08c}
+pre.out{border-left-color:#2a2;background:#f0f8f0}.syn{font-family:Consolas,monospace;background:#eef;padding:.2em .4em}
+.el{display:none}body.lang-el .el{display:block}body.lang-el .en{display:none}
+nav a{margin-right:.8em}.foot{margin-top:3em;color:#777;font-size:.8em}.bar{float:right}
+.warn{color:#a50}</style><script>function L(l){document.body.className='lang-'+l}</script></head><body class="lang-en">
+<div class="bar"><a href="#" onclick="L('en');return false">English</a> | <a href="#" onclick="L('el');return false">Ελληνικά</a></div>
+<nav><a href="index.html">Index</a></nav><h1>Bits, hashes and colours</h1><h2 id="base64encode_str_base64decode_str">BASE64ENCODE$ / BASE64DECODE$</h2><p><span class="syn">BASE64ENCODE$(s$) / BASE64DECODE$(s$)</span></p><div class="en"><p>Convert text to Base64 and back.</p></div><div class="el"><p>Μετατρέπουν κείμενο σε Base64 και αντίστροφα.</p></div><pre>print base64encode$(&quot;Hi&quot;)
+print base64decode$(&quot;SGk=&quot;)</pre><pre class="out">SGk=
+Hi</pre><h2 id="deflate_str_inflate_str">DEFLATE$ / INFLATE$</h2><p><span class="syn">DEFLATE$(s$) / INFLATE$(s$)</span></p><div class="en"><p>Compress a string and restore it again.</p></div><div class="el"><p>Συμπιέζουν ένα κείμενο και το επαναφέρουν.</p></div><pre>print inflate$(deflate$(&quot;hello hello hello&quot;))</pre><pre class="out">hello hello hello</pre><h2 id="md5_str_sha1_str_sha256_str">MD5$ / SHA1$ / SHA256$</h2><p><span class="syn">MD5$(s$) / SHA1$(s$) / SHA256$(s$)</span></p><div class="en"><p>Return the hash of a string as lowercase hexadecimal text.</p></div><div class="el"><p>Επιστρέφουν το hash ενός κειμένου ως δεκαεξαδικό κείμενο με μικρά γράμματα.</p></div><pre>print md5$(&quot;abc&quot;)
+print sha1$(&quot;abc&quot;)
+print sha256$(&quot;abc&quot;)</pre><pre class="out">900150983cd24fb0d6963f7d28e17f72
+a9993e364706816aba3e25717850c26c9cd0d89d
+ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</pre><h2 id="readbit_setbit_resetbit_togglebit">READBIT / SETBIT / RESETBIT / TOGGLEBIT</h2><p><span class="syn">READBIT(n, bit) / SETBIT(n, bit) / RESETBIT(n, bit) / TOGGLEBIT(n, bit)</span></p><div class="en"><p>Work on one bit of n; bit 0 is the lowest. SETBIT turns it on, RESETBIT turns it off, TOGGLEBIT flips it, READBIT tests it and gives -1 when the bit is on and 0 when it is off.</p></div><div class="el"><p>Δουλεύουν σε ένα bit του n· το bit 0 είναι το χαμηλότερο. Το SETBIT το ανάβει, το RESETBIT το σβήνει, το TOGGLEBIT το αντιστρέφει, το READBIT το ελέγχει και δίνει -1 όταν είναι αναμμένο και 0 όταν είναι σβηστό.</p></div><pre>print setbit(0, 3)
+print resetbit(15, 0)
+print togglebit(5, 1)
+print readbit(5, 0)
+print readbit(5, 1)</pre><pre class="out">8
+14
+7
+-1
+0</pre><h2 id="red_green_blue_alpha">RED / GREEN / BLUE / ALPHA</h2><p><span class="syn">RED(c) / GREEN(c) / BLUE(c) / ALPHA(c)</span></p><div class="en"><p>Extract one component from a packed colour made with _RGB or _RGBA.</p></div><div class="el"><p>Εξάγουν ένα συστατικό από πακεταρισμένο χρώμα που έγινε με _RGB ή _RGBA.</p></div><pre>c = _rgba(1, 2, 3, 4)
+print red(c); green(c); blue(c); alpha(c)</pre><pre class="out">1234</pre><h2 id="shl_shr_rol_ror">SHL / SHR / ROL / ROR</h2><p><span class="syn">SHL(n, k) / SHR(n, k) / ROL(n, k) / ROR(n, k)</span></p><div class="en"><p>Shift the bits of n left or right by k places, or rotate them. (The QB64 names _SHL, _SHR, _ROL and _ROR work too.)</p></div><div class="el"><p>Ολισθαίνουν τα bits του n αριστερά ή δεξιά κατά k θέσεις, ή τα περιστρέφουν. (Δουλεύουν και τα ονόματα της QB64 _SHL, _SHR, _ROL και _ROR.)</p></div><pre>print shl(1, 3)
+print shr(8, 2)
+print rol(1, 1)
+print ror(2, 1)</pre><pre class="out">8
+2
+2
+1</pre><h2 id="urlencode_str_urldecode_str">URLENCODE$ / URLDECODE$</h2><p><span class="syn">URLENCODE$(s$) / URLDECODE$(s$)</span></p><div class="en"><p>Convert text for use inside a web address (a space becomes %20) and back.</p></div><div class="el"><p>Μετατρέπουν κείμενο για χρήση σε διεύθυνση ιστού (το κενό γίνεται %20) και αντίστροφα.</p></div><pre>print urlencode$(&quot;a b&amp;c&quot;)
+print urldecode$(&quot;a%20b&quot;)</pre><pre class="out">a%20b%26c
+a b</pre><h2 id="uuid_str">UUID$</h2><p><span class="syn">UUID$()</span></p><div class="en"><p>Returns a new random identifier of 36 characters, such as a26abb12-ae05-477c-921c-5fb03ce31d30.</p></div><div class="el"><p>Επιστρέφει έναν νέο τυχαίο αναγνωριστικό 36 χαρακτήρων, όπως a26abb12-ae05-477c-921c-5fb03ce31d30.</p></div><pre>print len(uuid$())</pre><pre class="out">36</pre>
+<div class="foot">Freedom Basic help - build 652 - generated 2026-11-08</div></body></html>

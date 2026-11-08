@@ -1,0 +1,148 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Windows and controls</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:1em auto;padding:0 1em;color:#222}
+h1{border-bottom:2px solid #08c}h2{margin-top:1.6em;border-bottom:1px solid #ccc}
+pre{background:#f4f4f4;padding:.6em;overflow:auto;border-left:3px solid #08c}
+pre.out{border-left-color:#2a2;background:#f0f8f0}.syn{font-family:Consolas,monospace;background:#eef;padding:.2em .4em}
+.el{display:none}body.lang-el .el{display:block}body.lang-el .en{display:none}
+nav a{margin-right:.8em}.foot{margin-top:3em;color:#777;font-size:.8em}.bar{float:right}
+.warn{color:#a50}</style><script>function L(l){document.body.className='lang-'+l}</script></head><body class="lang-en">
+<div class="bar"><a href="#" onclick="L('en');return false">English</a> | <a href="#" onclick="L('el');return false">Ελληνικά</a></div>
+<nav><a href="index.html">Index</a></nav><h1>Windows and controls</h1><h2 id="bmpbutton">BMPBUTTON</h2><p><span class="syn">BMPBUTTON #w.name, &quot;file.bmp&quot;, [branch], UL, x, y</span></p><div class="en"><p>A button that shows a bitmap picture instead of a caption.</p></div><div class="el"><p>Ένα κουμπί που δείχνει εικόνα bitmap αντί για κείμενο.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill red&quot;
+print #g, &quot;getbmp a 0 0 20 20&quot;
+bmpsave &quot;a&quot;, &quot;b.bmp&quot;
+close #g
+bmpbutton #w.b, &quot;b.bmp&quot;, [c], UL, 10, 10
+open &quot;bb&quot; for window as #w
+print &quot;ok&quot;
+close #w
+end
+[c]
+wait</pre><pre class="out">ok</pre><h2 id="button">BUTTON</h2><p><span class="syn">BUTTON #w.name, &quot;caption&quot;, [branch], UL, x, y, w, h</span></p><div class="en"><p>A push button. When it is clicked, the program jumps to [branch]. Send it &quot;!disable&quot;, &quot;!enable&quot;, &quot;!show&quot;, &quot;!hide&quot; or a new caption string.</p></div><div class="el"><p>Ένα κουμπί. Όταν πατηθεί, το πρόγραμμα πηγαίνει στο [branch]. Στείλε του &quot;!disable&quot;, &quot;!enable&quot;, &quot;!show&quot;, &quot;!hide&quot; ή νέο κείμενο.</p></div><pre>nomainwin
+button #w.b, &quot;Hi&quot;, [clk], UL, 10, 10, 60, 25
+open &quot;b&quot; for window as #w
+print #w.b, &quot;Bye&quot;
+print #w.b, &quot;!disable&quot;
+print &quot;ok&quot;
+close #w
+end
+[clk]
+wait</pre><pre class="out">ok</pre><h2 id="checkbox">CHECKBOX</h2><p><span class="syn">CHECKBOX #w.name, &quot;caption&quot;, [setBranch], [resetBranch], x, y, w, h</span></p><div class="en"><p>A tick box. &quot;set&quot; ticks it, &quot;reset&quot; clears it, &quot;value? v$&quot; returns &quot;set&quot; or &quot;reset&quot;.</p></div><div class="el"><p>Ένα κουτί επιλογής. Το &quot;set&quot; το τσεκάρει, το &quot;reset&quot; το καθαρίζει, το &quot;value? v$&quot; επιστρέφει &quot;set&quot; ή &quot;reset&quot;.</p></div><pre>nomainwin
+checkbox #w.c, &quot;opt&quot;, [s], [r], 10, 10, 60, 20
+open &quot;c&quot; for window as #w
+print #w.c, &quot;set&quot;
+print #w.c, &quot;value? v$&quot;
+print v$
+print #w.c, &quot;reset&quot;
+print #w.c, &quot;value? v$&quot;
+print v$
+close #w
+end
+[s]
+wait
+[r]
+wait</pre><pre class="out">set
+reset</pre><h2 id="combobox">COMBOBOX</h2><p><span class="syn">COMBOBOX #w.name, array$(, [branch], x, y, w, h</span></p><div class="en"><p>A drop-down list; uses the same commands as LISTBOX.</p></div><div class="el"><p>Μια αναδιπλούμενη λίστα· ίδιες εντολές με το LISTBOX.</p></div><pre>nomainwin
+dim a$(2)
+a$(1) = &quot;x&quot;
+a$(2) = &quot;y&quot;
+combobox #w.c, a$(, [sel], 10, 10, 80, 60
+open &quot;c&quot; for window as #w
+print #w.c, &quot;selectindex 2&quot;
+print #w.c, &quot;selection? s$&quot;
+print s$
+close #w
+end
+[sel]
+wait</pre><pre class="out">y</pre><h2 id="confirm">CONFIRM</h2><p><span class="syn">CONFIRM &quot;question&quot;; answer$</span></p><div class="en"><p>Asks a yes/no question. answer$ becomes &quot;yes&quot; or &quot;no&quot;.</p></div><div class="el"><p>Κάνει ερώτηση ναι/όχι. Το answer$ γίνεται &quot;yes&quot; ή &quot;no&quot;.</p></div><pre>nomainwin
+confirm &quot;Continue?&quot;; a$
+print a$</pre><p class="warn"><i>Not run in the automatic check: opens a dialog box and waits for a click</i></p><h2 id="filedialog">FILEDIALOG</h2><p><span class="syn">FILEDIALOG &quot;title&quot;, &quot;*.txt&quot;, file$</span></p><div class="en"><p>Shows a file-open dialog. file$ receives the chosen path, or an empty string if cancelled.</p></div><div class="el"><p>Εμφανίζει διάλογο επιλογής αρχείου. Το file$ παίρνει τη διαδρομή ή κενό αν ακυρωθεί.</p></div><pre>nomainwin
+filedialog &quot;Open&quot;, &quot;*.txt&quot;, f$
+print f$</pre><p class="warn"><i>Not run in the automatic check: opens a dialog box</i></p><h2 id="graphicbox">GRAPHICBOX</h2><p><span class="syn">GRAPHICBOX #w.name, x, y, w, h</span></p><div class="en"><p>A drawing area inside a window; it accepts the same commands as a graphics window.</p></div><div class="el"><p>Μια περιοχή σχεδίασης μέσα σε παράθυρο· δέχεται τις ίδιες εντολές με παράθυρο γραφικών.</p></div><pre>nomainwin
+graphicbox #w.g, 10, 10, 50, 50
+open &quot;gb&quot; for window as #w
+print #w.g, &quot;fill red&quot;
+print #w.g, &quot;flush&quot;
+print &quot;ok&quot;
+close #w</pre><pre class="out">ok</pre><h2 id="groupbox">GROUPBOX</h2><p><span class="syn">GROUPBOX #w.name, &quot;caption&quot;, x, y, w, h</span></p><div class="en"><p>A frame with a caption drawn around other controls.</p></div><div class="el"><p>Ένα πλαίσιο με τίτλο γύρω από άλλα controls.</p></div><pre>nomainwin
+groupbox #w.g, &quot;Group&quot;, 5, 5, 120, 70
+open &quot;g&quot; for window as #w
+print &quot;ok&quot;
+close #w</pre><pre class="out">ok</pre><h2 id="listbox">LISTBOX</h2><p><span class="syn">LISTBOX #w.name, array$(, [branch], x, y, w, h</span></p><div class="en"><p>A list of choices taken from a string array (note the open parenthesis). Commands: &quot;select text&quot;, &quot;selectindex n&quot;, &quot;selection? s$&quot;, &quot;selectionindex? i&quot;, &quot;count? n&quot;, &quot;reload&quot;.</p></div><div class="el"><p>Μια λίστα επιλογών από πίνακα κειμένων (πρόσεξε την ανοιχτή παρένθεση). Εντολές: &quot;select κείμενο&quot;, &quot;selectindex n&quot;, &quot;selection? s$&quot;, &quot;selectionindex? i&quot;, &quot;count? n&quot;, &quot;reload&quot;.</p></div><pre>nomainwin
+dim a$(3)
+a$(1) = &quot;x&quot;
+a$(2) = &quot;y&quot;
+a$(3) = &quot;z&quot;
+listbox #w.l, a$(, [sel], 10, 10, 80, 60
+open &quot;l&quot; for window as #w
+print #w.l, &quot;select y&quot;
+print #w.l, &quot;selection? s$&quot;
+print s$
+print #w.l, &quot;selectindex 3&quot;
+print #w.l, &quot;selectionindex? i&quot;
+print i
+print #w.l, &quot;count? n&quot;
+print n
+close #w
+end
+[sel]
+wait</pre><pre class="out">y
+3
+3</pre><h2 id="menu">MENU</h2><p><span class="syn">MENU #w, &quot;title&quot;, &quot;item&quot;, [branch], |, &quot;item&quot;, [branch]</span></p><div class="en"><p>Adds a drop-down menu to a window. A | makes a separator line. Put &amp; before a letter for the keyboard shortcut. Menu text may be written without quotes.</p></div><div class="el"><p>Προσθέτει αναδιπλούμενο μενού στο παράθυρο. Το | βάζει διαχωριστική γραμμή. Το &amp; πριν από γράμμα ορίζει συντόμευση. Το κείμενο του μενού μπορεί να γραφτεί και χωρίς εισαγωγικά.</p></div><pre>nomainwin
+menu #w, &quot;&amp;File&quot;, &quot;&amp;Open&quot;, [o], |, &quot;E&amp;xit&quot;, [x]
+open &quot;m&quot; for window as #w
+print &quot;menu&quot;
+close #w
+end
+[o]
+wait
+[x]
+wait</pre><pre class="out">menu</pre><h2 id="notice">NOTICE</h2><p><span class="syn">NOTICE &quot;message&quot;</span></p><div class="en"><p>Shows a message box with an OK button.</p></div><div class="el"><p>Εμφανίζει πλαίσιο μηνύματος με κουμπί OK.</p></div><pre>nomainwin
+notice &quot;hello&quot;
+print &quot;done&quot;</pre><p class="warn"><i>Not run in the automatic check: opens a dialog box and waits for a click</i></p><h2 id="open_for_window">OPEN ... FOR WINDOW</h2><p><span class="syn">OPEN &quot;title&quot; FOR WINDOW AS #w</span></p><div class="en"><p>Opens a window. Set WindowWidth, WindowHeight, UpperLeftX and UpperLeftY before opening it. Controls declared before OPEN (BUTTON, TEXTBOX...) appear inside it. Commands go to the window with PRINT #w, &quot;...&quot;.</p></div><div class="el"><p>Ανοίγει ένα παράθυρο. Όρισε τα WindowWidth, WindowHeight, UpperLeftX και UpperLeftY πριν το ανοίξεις. Τα controls που δηλώνονται πριν το OPEN (BUTTON, TEXTBOX...) εμφανίζονται μέσα του. Οι εντολές στέλνονται με PRINT #w, &quot;...&quot;.</p></div><pre>nomainwin
+WindowWidth = 300
+WindowHeight = 200
+open &quot;demo&quot; for window as #w
+print #w, &quot;trapclose [q]&quot;
+print &quot;open&quot;
+close #w
+[q]</pre><pre class="out">open</pre><h2 id="prompt">PROMPT</h2><p><span class="syn">PROMPT &quot;question&quot;; answer$</span></p><div class="en"><p>Asks the user to type a value into answer$.</p></div><div class="el"><p>Ζητά από τον χρήστη να πληκτρολογήσει τιμή στο answer$.</p></div><pre>nomainwin
+prompt &quot;Name?&quot;; n$
+print n$</pre><p class="warn"><i>Not run in the automatic check: opens a dialog box and waits for typing</i></p><h2 id="radiobutton">RADIOBUTTON</h2><p><span class="syn">RADIOBUTTON #w.name, &quot;caption&quot;, [setBranch], [resetBranch], x, y, w, h</span></p><div class="en"><p>A round option button; same commands as CHECKBOX.</p></div><div class="el"><p>Ένα στρογγυλό κουμπί επιλογής· ίδιες εντολές με το CHECKBOX.</p></div><pre>nomainwin
+radiobutton #w.r, &quot;one&quot;, [s], [r], 10, 10, 60, 20
+open &quot;r&quot; for window as #w
+print #w.r, &quot;set&quot;
+print #w.r, &quot;value? v$&quot;
+print v$
+close #w
+end
+[s]
+wait
+[r]
+wait</pre><pre class="out">set</pre><h2 id="statictext">STATICTEXT</h2><p><span class="syn">STATICTEXT #w.name, &quot;text&quot;, x, y, w, h</span></p><div class="en"><p>A label. PRINT #w.s, &quot;new text&quot; changes it.</p></div><div class="el"><p>Μια ετικέτα. Το PRINT #w.s, &quot;νέο κείμενο&quot; την αλλάζει.</p></div><pre>nomainwin
+statictext #w.s, &quot;first&quot;, 10, 10, 80, 20
+open &quot;s&quot; for window as #w
+print #w.s, &quot;second&quot;
+print &quot;ok&quot;
+close #w</pre><pre class="out">ok</pre><h2 id="textbox">TEXTBOX</h2><p><span class="syn">TEXTBOX #w.name, x, y, w, h</span></p><div class="en"><p>A one-line text entry. PRINT #w.t, &quot;text&quot; sets its contents; PRINT #w.t, &quot;!contents? var$&quot; reads it.</p></div><div class="el"><p>Ένα πεδίο κειμένου μίας γραμμής. Το PRINT #w.t, &quot;κείμενο&quot; ορίζει το περιεχόμενο· το PRINT #w.t, &quot;!contents? var$&quot; το διαβάζει.</p></div><pre>nomainwin
+textbox #w.t, 10, 10, 100, 25
+open &quot;t&quot; for window as #w
+print #w.t, &quot;abc&quot;
+print #w.t, &quot;!contents? c$&quot;
+print c$
+close #w</pre><pre class="out">abc</pre><h2 id="texteditor">TEXTEDITOR</h2><p><span class="syn">TEXTEDITOR #w.name, x, y, w, h</span></p><div class="en"><p>A multi-line text editor. Read with &quot;!contents? var$&quot;.</p></div><div class="el"><p>Επεξεργαστής κειμένου πολλών γραμμών. Διαβάζεται με &quot;!contents? var$&quot;.</p></div><pre>nomainwin
+texteditor #w.e, 10, 10, 100, 60
+open &quot;e&quot; for window as #w
+print #w.e, &quot;line one&quot;
+print #w.e, &quot;!contents? c$&quot;
+print len(c$) &gt; 0
+close #w</pre><pre class="out">1</pre><h2 id="timer">TIMER</h2><p><span class="syn">TIMER milliseconds, [branch]  /  TIMER 0</span></p><div class="en"><p>Jumps to [branch] every given number of milliseconds while the program waits. TIMER 0 stops it.</p></div><div class="el"><p>Πηγαίνει στο [branch] κάθε δοσμένα χιλιοστά του δευτερολέπτου όσο το πρόγραμμα περιμένει. Το TIMER 0 το σταματά.</p></div><pre>nomainwin
+open &quot;t&quot; for window as #w
+timer 100, [tick]
+wait
+[tick]
+timer 0
+print &quot;tick&quot;
+close #w</pre><pre class="out">tick</pre>
+<div class="foot">Freedom Basic help - build 652 - generated 2026-11-08</div></body></html>

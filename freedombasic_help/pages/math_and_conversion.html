@@ -1,0 +1,97 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Math and conversion</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:1em auto;padding:0 1em;color:#222}
+h1{border-bottom:2px solid #08c}h2{margin-top:1.6em;border-bottom:1px solid #ccc}
+pre{background:#f4f4f4;padding:.6em;overflow:auto;border-left:3px solid #08c}
+pre.out{border-left-color:#2a2;background:#f0f8f0}.syn{font-family:Consolas,monospace;background:#eef;padding:.2em .4em}
+.el{display:none}body.lang-el .el{display:block}body.lang-el .en{display:none}
+nav a{margin-right:.8em}.foot{margin-top:3em;color:#777;font-size:.8em}.bar{float:right}
+.warn{color:#a50}</style><script>function L(l){document.body.className='lang-'+l}</script></head><body class="lang-en">
+<div class="bar"><a href="#" onclick="L('en');return false">English</a> | <a href="#" onclick="L('el');return false">Ελληνικά</a></div>
+<nav><a href="index.html">Index</a></nav><h1>Math and conversion</h1><h2 id="power">^  (power)</h2><p><span class="syn">a ^ b</span></p><div class="en"><p>Raises a to the power b.</p></div><div class="el"><p>Υψώνει το a στη δύναμη b.</p></div><pre>print 2 ^ 3
+print 2 ^ -1</pre><pre class="out">8
+0.5</pre><h2 id="acs_asn_acos_asin">ACS / ASN (ACOS / ASIN)</h2><p><span class="syn">ACS(x) / ASN(x)  (also ACOS(x) / ASIN(x))</span></p><div class="en"><p>Arc cosine and arc sine. The result is in radians; x must be between -1 and 1.</p></div><div class="el"><p>Τόξο συνημιτόνου και τόξο ημιτόνου. Το αποτέλεσμα είναι σε ακτίνια· το x πρέπει να είναι από -1 ως 1.</p></div><pre>print acs(0.5)
+print asn(0.5)</pre><pre class="out">1.04719755
+0.52359878</pre><h2 id="and_or_xor_not">AND / OR / XOR / NOT</h2><p><span class="syn">a AND b / a OR b / a XOR b / NOT(a)</span></p><div class="en"><p>Logical and bitwise operators. On whole numbers they work bit by bit.</p></div><div class="el"><p>Λογικοί τελεστές και τελεστές bit. Στους ακέραιους δουλεύουν bit προς bit.</p></div><pre>print 5 and 3
+print 5 or 3
+print 5 xor 3
+print not(0)</pre><pre class="out">1
+7
+6
+1</pre><h2 id="arccot_arccsc_arcsec">ARCCOT / ARCCSC / ARCSEC</h2><p><span class="syn">ARCCOT(x) / ARCCSC(x) / ARCSEC(x)</span></p><div class="en"><p>Inverse cotangent, cosecant and secant, in radians.</p></div><div class="el"><p>Αντίστροφη συνεφαπτομένη, συντέμνουσα και τέμνουσα, σε ακτίνια.</p></div><pre>print arccot(1)
+print arccsc(2)
+print arcsec(2)</pre><pre class="out">0.78539816
+0.52359878
+1.04719755</pre><h2 id="asinh_acosh_atanh">ASINH / ACOSH / ATANH</h2><p><span class="syn">ASINH(x) / ACOSH(x) / ATANH(x)</span></p><div class="en"><p>Inverse hyperbolic sine, cosine and tangent. ACOSH needs x &gt;= 1 and ATANH needs x between -1 and 1.</p></div><div class="el"><p>Αντίστροφο υπερβολικό ημίτονο, συνημίτονο και εφαπτομένη. Το ACOSH θέλει x &gt;= 1 και το ATANH x από -1 ως 1.</p></div><pre>print asinh(1)
+print acosh(2)
+print atanh(0.5)</pre><pre class="out">0.88137359
+1.3169579
+0.54930614</pre><h2 id="atan2">ATAN2</h2><p><span class="syn">ATAN2(y, x)</span></p><div class="en"><p>Angle in radians of the point (x, y), measured from the x axis. Unlike ATN it knows the quadrant.</p></div><div class="el"><p>Γωνία σε ακτίνια του σημείου (x, y) από τον άξονα x. Αντίθετα από το ATN γνωρίζει το τεταρτημόριο.</p></div><pre>print atan2(1, 1)
+print atan2(1, -1)</pre><pre class="out">0.78539816
+2.35619449</pre><h2 id="ceil_floor_truncate_frac">CEIL / FLOOR / TRUNCATE / FRAC</h2><p><span class="syn">CEIL(x) / FLOOR(x) / TRUNCATE(x) / FRAC(x)</span></p><div class="en"><p>Round up, round down, drop the decimals, and keep only the decimals.</p></div><div class="el"><p>Στρογγυλοποίηση προς τα πάνω, προς τα κάτω, αποκοπή δεκαδικών και μόνο τα δεκαδικά.</p></div><pre>print ceil(1.2); floor(1.8); truncate(1.8); frac(1.5)</pre><pre class="out">2110.5</pre><h2 id="cos_tan_atn">COS / TAN / ATN</h2><p><span class="syn">COS(x) / TAN(x) / ATN(x)</span></p><div class="en"><p>Cosine, tangent and arctangent. Angles are in radians; ATN(1) is a quarter of pi.</p></div><div class="el"><p>Συνημίτονο, εφαπτομένη και τόξο εφαπτομένης. Οι γωνίες είναι σε ακτίνια· το ATN(1) είναι το ένα τέταρτο του π.</p></div><pre>print cos(0)
+print tan(0)
+print atn(1) * 4</pre><pre class="out">1
+0
+3.14159265</pre><h2 id="cot_csc_sec">COT / CSC / SEC</h2><p><span class="syn">COT(x) / CSC(x) / SEC(x)</span></p><div class="en"><p>Cotangent, cosecant and secant (angles in radians).</p></div><div class="el"><p>Συνεφαπτομένη, συντέμνουσα και τέμνουσα (γωνίες σε ακτίνια).</p></div><pre>print cot(1)
+print csc(1)
+print sec(1)</pre><pre class="out">0.64209262
+1.18839511
+1.85081572</pre><h2 id="coth_csch_sech">COTH / CSCH / SECH</h2><p><span class="syn">COTH(x) / CSCH(x) / SECH(x)</span></p><div class="en"><p>Hyperbolic cotangent, cosecant and secant.</p></div><div class="el"><p>Υπερβολική συνεφαπτομένη, συντέμνουσα και τέμνουσα.</p></div><pre>print coth(1)
+print csch(1)
+print sech(1)</pre><pre class="out">1.31303529
+0.85091813
+0.64805427</pre><h2 id="d2r_r2d_d2g_g2d_r2g_g2r">D2R / R2D / D2G / G2D / R2G / G2R</h2><p><span class="syn">D2R(x) R2D(x) D2G(x) G2D(x) R2G(x) G2R(x)</span></p><div class="en"><p>Convert angles between degrees (D), radians (R) and gradians (G). D2R means degrees to radians.</p></div><div class="el"><p>Μετατρέπουν γωνίες ανάμεσα σε μοίρες (D), ακτίνια (R) και grad (G). Το D2R σημαίνει μοίρες σε ακτίνια.</p></div><pre>print d2r(180)
+print d2g(90)
+print g2d(100)</pre><pre class="out">3.14159265
+100
+90</pre><h2 id="eval">EVAL</h2><p><span class="syn">EVAL(&quot;expression&quot;)</span></p><div class="en"><p>Calculates a text expression and returns the result.</p></div><div class="el"><p>Υπολογίζει μια έκφραση σε μορφή κειμένου και επιστρέφει το αποτέλεσμα.</p></div><pre>print eval(&quot;1+2&quot;)
+print eval(&quot;2*3&quot;)</pre><pre class="out">3
+6</pre><h2 id="factorial_combinations_permutations">FACTORIAL / COMBINATIONS / PERMUTATIONS</h2><p><span class="syn">FACTORIAL(n) / COMBINATIONS(n, k) / PERMUTATIONS(n, k)</span></p><div class="en"><p>n!, the number of ways to choose k of n without order, and with order.</p></div><div class="el"><p>Το n!, ο αριθμός των τρόπων επιλογής k από n χωρίς σειρά, και με σειρά.</p></div><pre>print factorial(5)
+print combinations(5, 2)
+print permutations(5, 2)</pre><pre class="out">120
+10
+20</pre><h2 id="fract_modf_sign">FRACT / MODF / SIGN</h2><p><span class="syn">FRACT(x) / MODF(x) / SIGN(x)</span></p><div class="en"><p>FRACT and MODF return the decimal part of x (3.75 gives 0.75). SIGN returns -1, 0 or 1.</p></div><div class="el"><p>Τα FRACT και MODF επιστρέφουν το δεκαδικό μέρος του x (το 3.75 δίνει 0.75). Το SIGN επιστρέφει -1, 0 ή 1.</p></div><pre>print fract(3.75)
+print modf(3.75)
+print sign(-3)</pre><pre class="out">0.75
+0.75
+-1</pre><h2 id="gamma_beta">GAMMA / BETA</h2><p><span class="syn">GAMMA(x) / BETA(a, b)</span></p><div class="en"><p>The gamma function (GAMMA(5) = 24) and the beta function.</p></div><div class="el"><p>Η συνάρτηση γάμμα (GAMMA(5) = 24) και η συνάρτηση βήτα.</p></div><pre>print gamma(5)
+print beta(2, 3)</pre><pre class="out">24
+0.08333333</pre><h2 id="hexdec_dechex_str">HEXDEC / DECHEX$</h2><p><span class="syn">HEXDEC(&quot;FF&quot;) / DECHEX$(255)</span></p><div class="en"><p>Convert between hexadecimal text and numbers.</p></div><div class="el"><p>Μετατροπή μεταξύ δεκαεξαδικού κειμένου και αριθμών.</p></div><pre>print hexdec(&quot;FF&quot;)
+print dechex$(255)</pre><pre class="out">255
+FF</pre><h2 id="hypot_copysign">HYPOT / COPYSIGN</h2><p><span class="syn">HYPOT(a, b) / COPYSIGN(x, y)</span></p><div class="en"><p>HYPOT is the length of the hypotenuse, sqr(a*a + b*b). COPYSIGN takes the size of x and the sign of y.</p></div><div class="el"><p>Το HYPOT είναι το μήκος της υποτείνουσας, sqr(a*a + b*b). Το COPYSIGN παίρνει το μέγεθος του x και το πρόσημο του y.</p></div><pre>print hypot(3, 4)
+print copysign(3, -1)</pre><pre class="out">5
+-3</pre><h2 id="lerp_clamp_smoothstep">LERP / CLAMP / SMOOTHSTEP</h2><p><span class="syn">LERP(a, b, t) / CLAMP(x, lo, hi) / SMOOTHSTEP(lo, hi, x)</span></p><div class="en"><p>LERP gives the value a fraction t of the way from a to b. CLAMP limits x to lo..hi. SMOOTHSTEP goes from 0 to 1 with soft ends.</p></div><div class="el"><p>Το LERP δίνει την τιμή που βρίσκεται σε ποσοστό t από το a ως το b. Το CLAMP περιορίζει το x ανάμεσα στο lo και το hi. Το SMOOTHSTEP πηγαίνει από το 0 στο 1 με ομαλά άκρα.</p></div><pre>print lerp(0, 10, 0.5)
+print clamp(15, 0, 10)
+print smoothstep(0, 1, 0.5)</pre><pre class="out">5
+10
+0.5</pre><h2 id="log_exp">LOG / EXP</h2><p><span class="syn">LOG(x) / EXP(x)</span></p><div class="en"><p>Natural logarithm and e raised to x.</p></div><div class="el"><p>Φυσικός λογάριθμος και e υψωμένο στο x.</p></div><pre>print log(1)
+print exp(0)</pre><pre class="out">0
+1</pre><h2 id="ltrim_str_rtrim_str_space_str_string_str">LTRIM$ / RTRIM$ / SPACE$ / STRING$</h2><p><span class="syn">LTRIM$(s$) / RTRIM$(s$) / SPACE$(n) / STRING$(n, c$)</span></p><div class="en"><p>Trim spaces from the left or right, make n spaces, or repeat a character n times.</p></div><div class="el"><p>Αφαιρούν κενά αριστερά ή δεξιά, φτιάχνουν n κενά ή επαναλαμβάνουν έναν χαρακτήρα n φορές.</p></div><pre>print &quot;[&quot; + ltrim$(&quot;  a&quot;) + &quot;]&quot;
+print &quot;[&quot; + rtrim$(&quot;a  &quot;) + &quot;]&quot;
+print &quot;[&quot; + space$(3) + &quot;]&quot;
+print string$(4, &quot;x&quot;)</pre><pre class="out">[a]
+[a]
+[   ]
+xxxx</pre><h2 id="max_min">MAX / MIN</h2><p><span class="syn">MAX(a, b) / MIN(a, b)</span></p><div class="en"><p>Larger and smaller of two numbers.</p></div><div class="el"><p>Ο μεγαλύτερος και ο μικρότερος από δύο αριθμούς.</p></div><pre>print max(3, 8)
+print min(3, 8)</pre><pre class="out">8
+3</pre><h2 id="mid_str_assignment">MID$ assignment</h2><p><span class="syn">MID$(a$, start, length) = text$</span></p><div class="en"><p>Replaces part of a string in place.</p></div><div class="el"><p>Αντικαθιστά μέρος ενός κειμένου επιτόπου.</p></div><pre>a$ = &quot;hello&quot;
+mid$(a$, 1, 1) = &quot;J&quot;
+print a$</pre><pre class="out">Jello</pre><h2 id="mkd_str_mki_str_cvd_cvi">MKD$ / MKI$ / CVD / CVI</h2><p><span class="syn">MKD$(x) / MKI$(n) / CVD(s$) / CVI(s$)</span></p><div class="en"><p>Convert numbers to binary strings and back, for binary and random files.</p></div><div class="el"><p>Μετατρέπουν αριθμούς σε δυαδικό κείμενο και αντίστροφα, για binary αρχεία.</p></div><pre>print cvd(mkd$(1.5))
+print cvi(mki$(7))</pre><pre class="out">1.5
+7</pre><h2 id="pi">PI()</h2><p><span class="syn">PI()</span></p><div class="en"><p>Returns the number pi. Write it with the parentheses.</p></div><div class="el"><p>Επιστρέφει τον αριθμό π. Γράφεται με παρενθέσεις.</p></div><pre>print pi()
+print 2 * pi() * 5</pre><pre class="out">3.14159265
+31.41592654</pre><h2 id="round">ROUND</h2><p><span class="syn">ROUND(x [, decimals])</span></p><div class="en"><p>Rounds x to the given number of decimals (default none). Halves round to the nearest even number: ROUND(2.5) is 2.</p></div><div class="el"><p>Στρογγυλοποιεί το x στον δοσμένο αριθμό δεκαδικών (προεπιλογή κανένα). Τα μισά πάνε στον πλησιέστερο άρτιο: το ROUND(2.5) είναι 2.</p></div><pre>print round(3.567, 2)
+print round(2.5)
+print round(3.5)</pre><pre class="out">3.57
+2
+4</pre><h2 id="sgn">SGN</h2><p><span class="syn">SGN(x)</span></p><div class="en"><p>Returns -1, 0 or 1 according to the sign of x.</p></div><div class="el"><p>Επιστρέφει -1, 0 ή 1 ανάλογα με το πρόσημο του x.</p></div><pre>print sgn(-5); sgn(0); sgn(9)</pre><pre class="out">-101</pre><h2 id="sinh_cosh_tanh">SINH / COSH / TANH</h2><p><span class="syn">SINH(x) / COSH(x) / TANH(x)</span></p><div class="en"><p>Hyperbolic sine, cosine and tangent.</p></div><div class="el"><p>Υπερβολικό ημίτονο, συνημίτονο και εφαπτομένη.</p></div><pre>print sinh(1)
+print cosh(1)
+print tanh(1)</pre><pre class="out">1.17520119
+1.54308063
+0.76159416</pre><h2 id="tab">TAB</h2><p><span class="syn">PRINT TAB(n); ...</span></p><div class="en"><p>Moves the print position to column n.</p></div><div class="el"><p>Μετακινεί τη θέση εκτύπωσης στη στήλη n.</p></div><pre>print tab(5); &quot;x&quot;
+print &quot;a&quot;; tab(4); &quot;b&quot;</pre><pre class="out">     x
+a    b</pre><h2 id="upper_str_lower_str_aliases_ucase_str_lcase_str">UPPER$ / LOWER$ aliases UCASE$ LCASE$</h2><p><span class="syn">UCASE$(s$) / LCASE$(s$)</span></p><div class="en"><p>Alternative names for UPPER$ and LOWER$.</p></div><div class="el"><p>Εναλλακτικά ονόματα των UPPER$ και LOWER$.</p></div><pre>print ucase$(&quot;ab&quot;); lcase$(&quot;CD&quot;)</pre><pre class="out">ABcd</pre><h2 id="using">USING</h2><p><span class="syn">PRINT USING(&quot;##.##&quot;, x)</span></p><div class="en"><p>Formats a number: each # is a digit, a . marks the decimal point, a , groups thousands.</p></div><div class="el"><p>Μορφοποιεί αριθμό: κάθε # είναι ψηφίο, η . δείχνει υποδιαστολή, το , ομαδοποιεί χιλιάδες.</p></div><pre>print using(&quot;##.##&quot;, 3.14159)
+print using(&quot;###&quot;, 12)
+print using(&quot;#,###.##&quot;, 1234.5)</pre><pre class="out"> 3.14
+ 12
+1,234.50</pre>
+<div class="foot">Freedom Basic help - build 652 - generated 2026-11-08</div></body></html>

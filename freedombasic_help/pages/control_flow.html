@@ -1,0 +1,114 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Control flow</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:1em auto;padding:0 1em;color:#222}
+h1{border-bottom:2px solid #08c}h2{margin-top:1.6em;border-bottom:1px solid #ccc}
+pre{background:#f4f4f4;padding:.6em;overflow:auto;border-left:3px solid #08c}
+pre.out{border-left-color:#2a2;background:#f0f8f0}.syn{font-family:Consolas,monospace;background:#eef;padding:.2em .4em}
+.el{display:none}body.lang-el .el{display:block}body.lang-el .en{display:none}
+nav a{margin-right:.8em}.foot{margin-top:3em;color:#777;font-size:.8em}.bar{float:right}
+.warn{color:#a50}</style><script>function L(l){document.body.className='lang-'+l}</script></head><body class="lang-en">
+<div class="bar"><a href="#" onclick="L('en');return false">English</a> | <a href="#" onclick="L('el');return false">Ελληνικά</a></div>
+<nav><a href="index.html">Index</a></nav><h1>Control flow</h1><h2 id="continue">CONTINUE</h2><p><span class="syn">CONTINUE FOR | CONTINUE WHILE | CONTINUE DO</span></p><div class="en"><p>Skips the rest of the current pass of the loop and goes on with the next one. For FOR, the counter is still increased.</p></div><div class="el"><p>Παραλείπει το υπόλοιπο της τρέχουσας επανάληψης και συνεχίζει με την επόμενη. Στο FOR το μετρητής αυξάνεται κανονικά.</p></div><pre>for i = 1 to 4
+    if i = 2 then continue for
+    print i;
+next i
+print</pre><pre class="out">134</pre><h2 id="do_loop">DO ... LOOP</h2><p><span class="syn">DO [WHILE|UNTIL condition] ... LOOP [WHILE|UNTIL condition]</span></p><div class="en"><p>A general loop. The condition may be placed after DO (tested first) or after LOOP (the body runs at least once). EXIT DO leaves the loop.</p></div><div class="el"><p>Γενικός βρόχος. Η συνθήκη μπορεί να μπει μετά το DO (ελέγχεται πρώτη) ή μετά το LOOP (το σώμα εκτελείται τουλάχιστον μία φορά). Το EXIT DO βγάζει από τον βρόχο.</p></div><pre>n = 0
+do
+    n = n + 1
+loop until n &gt;= 3
+print n</pre><pre class="out">3</pre><h2 id="exit_select">EXIT SELECT</h2><p><span class="syn">EXIT SELECT</span></p><div class="en"><p>Leaves the SELECT CASE block at once; the program continues after END SELECT.</p></div><div class="el"><p>Βγαίνει αμέσως από το μπλοκ SELECT CASE· το πρόγραμμα συνεχίζει μετά το END SELECT.</p></div><pre>a = 1
+select case a
+    case 1
+        print &quot;in&quot;
+        if a = 1 then exit select
+        print &quot;never&quot;
+end select
+print &quot;after&quot;</pre><pre class="out">in
+after</pre><h2 id="for_next">FOR ... NEXT</h2><p><span class="syn">FOR variable = start TO end [STEP n] ... NEXT [variable]</span></p><div class="en"><p>Repeats the statements between FOR and NEXT while the variable counts from start to end. STEP sets the increment (it may be negative).</p></div><div class="el"><p>Επαναλαμβάνει τις εντολές ανάμεσα στο FOR και το NEXT, ενώ η μεταβλητή μετράει από την αρχή ως το τέλος. Το STEP ορίζει το βήμα (μπορεί να είναι αρνητικό).</p></div><pre>for i = 1 to 3
+    print i
+next i
+for j = 10 to 4 step -3
+    print j
+next j</pre><pre class="out">1
+2
+3
+10
+7
+4</pre><h2 id="gosub_return">GOSUB / RETURN</h2><p><span class="syn">GOSUB label  ...  label ... RETURN</span></p><div class="en"><p>Jumps to a label, runs the statements there, and RETURN comes back to the line after the GOSUB. The label can be written as [name], as name: or as a line number - see LABELS.</p></div><div class="el"><p>Πηδά σε μια ετικέτα, εκτελεί τις εντολές εκεί, και το RETURN επιστρέφει στη γραμμή μετά το GOSUB. Η ετικέτα μπορεί να γραφτεί ως [όνομα], ως όνομα: ή ως αριθμός γραμμής - δες LABELS.</p></div><pre>gosub [hello]
+print &quot;back&quot;
+end
+[hello]
+print &quot;in subroutine&quot;
+return</pre><pre class="out">in subroutine
+back</pre><h2 id="goto">GOTO</h2><p><span class="syn">GOTO label</span></p><div class="en"><p>Continues execution at the label (see LABELS for the ways to write one). Unlike GOSUB, there is no automatic return.</p></div><div class="el"><p>Συνεχίζει την εκτέλεση στην ετικέτα (δες LABELS για τους τρόπους γραφής). Σε αντίθεση με το GOSUB, δεν υπάρχει αυτόματη επιστροφή.</p></div><pre>goto [skip]
+print &quot;not printed&quot;
+[skip]
+print &quot;done&quot;</pre><pre class="out">done</pre><h2 id="if">IF</h2><p><span class="syn">IF condition THEN statement [ELSE statement]   |   IF condition THEN ... [ELSE ...] END IF</span></p><div class="en"><p>Runs statements only when the condition is true. The one-line form takes a single statement after THEN; the block form ends with END IF and may contain ELSE.</p></div><div class="el"><p>Εκτελεί εντολές μόνο όταν η συνθήκη είναι αληθής. Η μορφή μίας γραμμής δέχεται μία εντολή μετά το THEN· η μορφή μπλοκ τελειώνει με END IF και μπορεί να έχει ELSE.</p></div><pre>a = 7
+if a &gt; 5 then print &quot;big&quot; else print &quot;small&quot;
+if a mod 2 = 0 then
+    print &quot;even&quot;
+else
+    print &quot;odd&quot;
+end if</pre><pre class="out">big
+odd</pre><h2 id="labels">LABELS</h2><p><span class="syn">[name]   |   name:   |   line number</span></p><div class="en"><p>A label marks a place in the program for GOTO, GOSUB and similar statements. Three forms were tested and all work: a name in square brackets, a name followed by a colon, and a line number at the start of a line. Names are not case sensitive, and a label written as name: can be called as steel or as [steel].</p></div><div class="el"><p>Η ετικέτα σημαδεύει μια θέση στο πρόγραμμα για τα GOTO, GOSUB και παρόμοιες εντολές. Δοκιμάστηκαν τρεις μορφές και δουλεύουν όλες: όνομα σε αγκύλες, όνομα με άνω-κάτω τελεία στο τέλος, και αριθμός γραμμής στην αρχή της γραμμής. Τα ονόματα δεν κάνουν διάκριση κεφαλαίων/μικρών, και ετικέτα που γράφεται name: μπορεί να κληθεί ως steel ή ως [steel].</p></div><pre>gosub [one]
+gosub two
+gosub [three]
+gosub 400
+end
+[one]
+print &quot;bracket label&quot;
+return
+two:
+print &quot;colon label&quot;
+return
+THREE:
+print &quot;colon label, upper case, called as [three]&quot;
+return
+400 print &quot;line-number label&quot;
+return</pre><pre class="out">bracket label
+colon label
+colon label, upper case, called as [three]
+line-number label</pre><h2 id="select_case">SELECT CASE</h2><p><span class="syn">SELECT CASE expression ... CASE test[, test ...] ... CASE ELSE ... END SELECT</span></p><div class="en"><p>Chooses one block of statements by testing an expression against several cases. Each test can be a value (CASE 3), a range (CASE 1 TO 5), a comparison (CASE IS &gt; 5; IS also accepts &lt;, &lt;=, &gt;=, &lt;&gt;, =), or a comma-separated mix of these. Text values and text ranges (CASE &quot;a&quot; TO &quot;f&quot;) work too, and the IS may be left out (CASE &gt; 5). Only the first matching CASE runs; CASE ELSE runs when nothing matches, and if nothing matches and there is no CASE ELSE the program simply continues after END SELECT.</p></div><div class="el"><p>Επιλέγει ένα μπλοκ εντολών ελέγχοντας μια έκφραση με διάφορες περιπτώσεις. Κάθε έλεγχος μπορεί να είναι τιμή (CASE 3), εύρος (CASE 1 TO 5), σύγκριση (CASE IS &gt; 5· το IS δέχεται και &lt;, &lt;=, &gt;=, &lt;&gt;, =), ή μείγμα αυτών χωρισμένο με κόμματα. Δουλεύουν και κείμενα, ακόμη και εύρη κειμένου (CASE &quot;a&quot; TO &quot;f&quot;), και το IS μπορεί να παραλειφθεί (CASE &gt; 5). Εκτελείται μόνο η πρώτη CASE που ταιριάζει· το CASE ELSE εκτελείται όταν δεν ταιριάζει καμία, και αν δεν ταιριάζει καμία και δεν υπάρχει CASE ELSE το πρόγραμμα συνεχίζει μετά το END SELECT.</p></div><pre>for x = 1 to 16 step 5
+    select case x
+        case 1, 3, 5 to 9, is &gt; 12
+            print x; &quot;: listed, range or above 12&quot;
+        case 2
+            print x; &quot;: two&quot;
+        case else
+            print x; &quot;: other&quot;
+    end select
+next x
+a$ = &quot;b&quot;
+select case a$
+    case &quot;a&quot;
+        print &quot;A&quot;
+    case &quot;b&quot;, &quot;c&quot;
+        print &quot;B or C&quot;
+end select
+c$ = &quot;d&quot;
+select case c$
+    case &quot;a&quot; to &quot;f&quot;
+        print c$; &quot; is in a to f&quot;
+    case &gt; &quot;f&quot;
+        print c$; &quot; is after f&quot;
+end select</pre><pre class="out">1: listed, range or above 12
+6: listed, range or above 12
+11: other
+16: listed, range or above 12
+B or C
+d is in a to f</pre><h2 id="sub_qb64_forms">SUB (QB64 forms)</h2><p><span class="syn">SUB name (p1 AS INTEGER, a() AS INTEGER) [STATIC] ... END SUB  /  name arg, arg  /  CALL name(arg, arg)</span></p><div class="en"><p>Besides the Liberty BASIC form (SUB name p1, p2 and CALL name p1, p2), Freedom accepts the QB64 form. The parameters may be in parentheses with types; a parameter declared with AS, or an array parameter such as a(), is passed by reference. The SUB can be called with CALL and a parenthesised argument list, or without CALL (name 1, 2 or name(1)). DECLARE SUB / DECLARE FUNCTION lines are accepted and ignored. A trailing STATIC is accepted, but variables do not keep their values between calls yet.</p></div><div class="el"><p>Εκτός από τη μορφή του Liberty BASIC (SUB name p1, p2 και CALL name p1, p2), το Freedom δέχεται και τη μορφή της QB64. Οι παράμετροι μπορεί να είναι σε παρενθέσεις με τύπους· μια παράμετρος με AS, ή παράμετρος πίνακα όπως a(), περνά by reference. Το SUB καλείται με CALL και λίστα ορισμάτων σε παρένθεση, ή χωρίς CALL (name 1, 2 ή name(1)). Οι γραμμές DECLARE SUB / DECLARE FUNCTION γίνονται δεκτές και αγνοούνται. Ένα STATIC στο τέλος γίνεται δεκτό, αλλά οι μεταβλητές δεν κρατούν ακόμα τιμές ανάμεσα στις κλήσεις.</p></div><pre>declare sub fillit (a() as integer, k as integer)
+dim v(3) as integer
+call fillit(v(), 5)
+print v(1)
+show (v(1) + 1)
+sub fillit (a() as integer, k as integer)
+    a(1) = k
+end sub
+sub show (n)
+    print &quot;n = &quot;; n
+end sub</pre><pre class="out">5
+n = 6</pre><h2 id="while_wend">WHILE ... WEND</h2><p><span class="syn">WHILE condition ... WEND</span></p><div class="en"><p>Repeats the statements while the condition is true. The condition is tested before each pass, so the body may never run.</p></div><div class="el"><p>Επαναλαμβάνει τις εντολές όσο η συνθήκη είναι αληθής. Η συνθήκη ελέγχεται πριν από κάθε επανάληψη, οπότε το σώμα μπορεί να μην εκτελεστεί ποτέ.</p></div><pre>n = 1
+while n &lt; 20
+    n = n * 2
+wend
+print n</pre><pre class="out">32</pre>
+<div class="foot">Freedom Basic help - build 652 - generated 2026-11-08</div></body></html>

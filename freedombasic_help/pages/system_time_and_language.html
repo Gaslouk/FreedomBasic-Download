@@ -1,0 +1,88 @@
+<!doctype html><html><head><meta charset="utf-8"><title>System, time and language</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:1em auto;padding:0 1em;color:#222}
+h1{border-bottom:2px solid #08c}h2{margin-top:1.6em;border-bottom:1px solid #ccc}
+pre{background:#f4f4f4;padding:.6em;overflow:auto;border-left:3px solid #08c}
+pre.out{border-left-color:#2a2;background:#f0f8f0}.syn{font-family:Consolas,monospace;background:#eef;padding:.2em .4em}
+.el{display:none}body.lang-el .el{display:block}body.lang-el .en{display:none}
+nav a{margin-right:.8em}.foot{margin-top:3em;color:#777;font-size:.8em}.bar{float:right}
+.warn{color:#a50}</style><script>function L(l){document.body.className='lang-'+l}</script></head><body class="lang-en">
+<div class="bar"><a href="#" onclick="L('en');return false">English</a> | <a href="#" onclick="L('el');return false">Ελληνικά</a></div>
+<nav><a href="index.html">Index</a></nav><h1>System, time and language</h1><h2 id="beep">BEEP</h2><p><span class="syn">BEEP</span></p><div class="en"><p>Plays the system beep.</p></div><div class="el"><p>Παίζει τον ήχο beep του συστήματος.</p></div><pre>beep
+print &quot;beeped&quot;</pre><pre class="out">beeped</pre><h2 id="byref">BYREF</h2><p><span class="syn">SUB name BYREF x</span></p><div class="en"><p>Passes a variable so that the SUB can change the caller&#x27;s copy.</p></div><div class="el"><p>Περνά μια μεταβλητή ώστε το SUB να αλλάζει το αντίγραφο του καλούντος.</p></div><pre>a = 1
+call s a
+print a
+sub s byref x
+    x = 9
+end sub</pre><pre class="out">9</pre><h2 id="cls_locate_color">CLS / LOCATE / COLOR</h2><p><span class="syn">CLS / LOCATE row, col / COLOR name</span></p><div class="en"><p>Text window commands: clear the screen, move the print position, change the text colour.</p></div><div class="el"><p>Εντολές παραθύρου κειμένου: καθαρισμός οθόνης, μετακίνηση θέσης εκτύπωσης, αλλαγή χρώματος κειμένου.</p></div><pre>cls
+locate 1, 1
+print &quot;y&quot;
+color red
+print &quot;c&quot;
+color white</pre><pre class="out">y
+c</pre><h2 id="const">CONST</h2><p><span class="syn">CONST name = value</span></p><div class="en"><p>Defines a named constant.</p></div><div class="el"><p>Ορίζει μια σταθερά με όνομα.</p></div><pre>const k = 5
+print k * 2</pre><pre class="out">10</pre><h2 id="elseif">ELSEIF</h2><p><span class="syn">IF a THEN ... ELSEIF b THEN ... ELSE ... END IF</span></p><div class="en"><p>Adds further conditions to an IF block.</p></div><div class="el"><p>Προσθέτει επιπλέον συνθήκες σε μπλοκ IF.</p></div><pre>a = 2
+if a = 1 then
+    print &quot;one&quot;
+elseif a = 2 then
+    print &quot;two&quot;
+else
+    print &quot;other&quot;
+end if</pre><pre class="out">two</pre><h2 id="end_stop">END / STOP</h2><p><span class="syn">END / STOP</span></p><div class="en"><p>END finishes the program. STOP halts it at that point.</p></div><div class="el"><p>Το END τελειώνει το πρόγραμμα. Το STOP το σταματά σε εκείνο το σημείο.</p></div><pre>print &quot;before&quot;
+end
+print &quot;never&quot;</pre><pre class="out">before</pre><h2 id="exit">EXIT</h2><p><span class="syn">EXIT FOR / EXIT WHILE / EXIT DO / EXIT SUB / EXIT FUNCTION</span></p><div class="en"><p>Leaves the loop, SUB or FUNCTION at once.</p></div><div class="el"><p>Βγαίνει αμέσως από τον βρόχο, το SUB ή τη FUNCTION.</p></div><pre>for i = 1 to 5
+    if i = 3 then exit for
+next i
+print i</pre><pre class="out">3</pre><h2 id="global_shared_static">GLOBAL / SHARED / STATIC</h2><p><span class="syn">GLOBAL a / SHARED a / STATIC a</span></p><div class="en"><p>GLOBAL makes a variable visible inside every SUB and FUNCTION. SHARED shares a named variable with one SUB. STATIC keeps a variable value between calls.</p></div><div class="el"><p>Το GLOBAL κάνει μια μεταβλητή ορατή μέσα σε κάθε SUB και FUNCTION. Το SHARED μοιράζει μεταβλητή με ένα SUB. Το STATIC κρατά την τιμή μεταξύ κλήσεων.</p></div><pre>global g
+g = 5
+call s
+print g
+sub s
+    static n
+    n = n + 1
+    g = g + n
+end sub</pre><pre class="out">6</pre><h2 id="inkey_str">INKEY$</h2><p><span class="syn">INKEY$</span></p><div class="en"><p>Returns the key waiting in the keyboard buffer, or an empty string if none.</p></div><div class="el"><p>Επιστρέφει το πλήκτρο που περιμένει στο buffer πληκτρολογίου ή κενό αν δεν υπάρχει.</p></div><pre>a$ = inkey$
+print len(a$)</pre><pre class="out">0</pre><h2 id="on_goto_gosub">ON ... GOTO / GOSUB</h2><p><span class="syn">ON n GOTO [a],[b] / ON n GOSUB [a],[b]</span></p><div class="en"><p>Jumps to the nth label of the list.</p></div><div class="el"><p>Πηγαίνει στη n-οστή ετικέτα της λίστας.</p></div><pre>n = 2
+on n goto [a], [b]
+[a]
+print &quot;a&quot;
+end
+[b]
+print &quot;b&quot;</pre><pre class="out">b</pre><h2 id="on_error_err_err_str">ON ERROR / ERR / ERR$</h2><p><span class="syn">ON ERROR GOTO [label]</span></p><div class="en"><p>Sends a run-time error to [label] instead of stopping. ERR is the error number and ERR$ its text.</p></div><div class="el"><p>Στέλνει ένα σφάλμα εκτέλεσης στο [label] αντί να σταματήσει. Το ERR είναι ο αριθμός και το ERR$ το κείμενο.</p></div><pre>on error goto [e]
+x = 1 / 0
+print &quot;not reached&quot;
+end
+[e]
+print err
+print err$</pre><pre class="out">1
+Division by zero</pre><h2 id="option_base">OPTION BASE</h2><p><span class="syn">OPTION BASE 0|1</span></p><div class="en"><p>Sets the first index of arrays.</p></div><div class="el"><p>Ορίζει τον πρώτο δείκτη των πινάκων.</p></div><pre>option base 1
+dim a(3)
+a(1) = 7
+print a(1)</pre><pre class="out">7</pre><h2 id="playwave">PLAYWAVE</h2><p><span class="syn">PLAYWAVE &quot;file.wav&quot;</span></p><div class="en"><p>Plays a .wav sound file.</p></div><div class="el"><p>Παίζει αρχείο ήχου .wav.</p></div><pre>playwave &quot;missing.wav&quot;
+print &quot;called&quot;</pre><p class="warn"><i>Not run in the automatic check: needs a sound file</i></p><h2 id="randomize">RANDOMIZE</h2><p><span class="syn">RANDOMIZE seed</span></p><div class="en"><p>Starts the random generator from a seed. The same seed gives the same sequence.</p></div><div class="el"><p>Ξεκινά τη γεννήτρια τυχαίων από ένα seed. Το ίδιο seed δίνει την ίδια ακολουθία.</p></div><pre>randomize 1
+r = rnd(1)
+print r &gt;= 0 and r &lt; 1</pre><pre class="out">1</pre><h2 id="redim_preserve">REDIM PRESERVE</h2><p><span class="syn">REDIM PRESERVE array(n)</span></p><div class="en"><p>Resizes an array and keeps its values.</p></div><div class="el"><p>Αλλάζει το μέγεθος πίνακα κρατώντας τις τιμές.</p></div><pre>dim a(2)
+a(1) = 5
+redim preserve a(4)
+print a(1)</pre><pre class="out">5</pre><h2 id="sort">SORT</h2><p><span class="syn">SORT array(, first, last</span></p><div class="en"><p>Sorts the elements first..last of a numeric or string array in ascending order (note the open parenthesis).</p></div><div class="el"><p>Ταξινομεί τα στοιχεία first..last ενός αριθμητικού ή αλφαριθμητικού πίνακα σε αύξουσα σειρά (πρόσεξε την ανοιχτή παρένθεση).</p></div><pre>dim a(3)
+a(1) = 3
+a(2) = 1
+a(3) = 2
+sort a(, 1, 3
+print a(1); a(2); a(3)</pre><pre class="out">123</pre><h2 id="struct">STRUCT</h2><p><span class="syn">STRUCT name, field AS type, ...</span></p><div class="en"><p>Defines a record with named fields, used as name.field.</p></div><div class="el"><p>Ορίζει εγγραφή με πεδία που χρησιμοποιούνται ως name.field.</p></div><pre>struct p, x as long, y as long
+p.x = 3
+p.y = 4
+print p.x + p.y</pre><pre class="out">7</pre><h2 id="swap">SWAP</h2><p><span class="syn">SWAP a, b</span></p><div class="en"><p>Exchanges the values of two variables.</p></div><div class="el"><p>Ανταλλάσσει τις τιμές δύο μεταβλητών.</p></div><pre>a = 1
+b = 2
+swap a, b
+print a; b</pre><pre class="out">21</pre><h2 id="ticks_time_str_date_str">TICKS / TIME$ / DATE$</h2><p><span class="syn">TICKS() / TIME$() / DATE$()</span></p><div class="en"><p>TICKS() returns milliseconds since the program started, TIME$() the clock time, DATE$() the date. TIME$(&quot;seconds&quot;) and DATE$(&quot;days&quot;) return numbers.</p></div><div class="el"><p>Το TICKS() επιστρέφει χιλιοστά του δευτερολέπτου από την εκκίνηση, το TIME$() την ώρα, το DATE$() την ημερομηνία. Τα TIME$(&quot;seconds&quot;) και DATE$(&quot;days&quot;) επιστρέφουν αριθμούς.</p></div><pre>print len(time$()) &gt; 0
+print len(date$()) &gt; 0
+print ticks() &gt;= 0</pre><pre class="out">1
+1
+1</pre><h2 id="type_end_type">TYPE ... END TYPE</h2><p><span class="syn">TYPE name : field AS type : END TYPE</span></p><div class="en"><p>QB64-style record. Create one with DIM v AS name.</p></div><div class="el"><p>Εγγραφή τύπου QB64. Δημιουργείται με DIM v AS name.</p></div><pre>type pt
+    x as integer
+    y as integer
+end type
+dim a as pt
+a.x = 2
+print a.x</pre><pre class="out">2</pre>
+<div class="foot">Freedom Basic help - build 652 - generated 2026-11-08</div></body></html>

@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Math functions</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:1em auto;padding:0 1em;color:#222}
+h1{border-bottom:2px solid #08c}h2{margin-top:1.6em;border-bottom:1px solid #ccc}
+pre{background:#f4f4f4;padding:.6em;overflow:auto;border-left:3px solid #08c}
+pre.out{border-left-color:#2a2;background:#f0f8f0}.syn{font-family:Consolas,monospace;background:#eef;padding:.2em .4em}
+.el{display:none}body.lang-el .el{display:block}body.lang-el .en{display:none}
+nav a{margin-right:.8em}.foot{margin-top:3em;color:#777;font-size:.8em}.bar{float:right}
+.warn{color:#a50}</style><script>function L(l){document.body.className='lang-'+l}</script></head><body class="lang-en">
+<div class="bar"><a href="#" onclick="L('en');return false">English</a> | <a href="#" onclick="L('el');return false">Ελληνικά</a></div>
+<nav><a href="index.html">Index</a></nav><h1>Math functions</h1><h2 id="abs">ABS</h2><p><span class="syn">ABS(n)</span></p><div class="en"><p>Returns the absolute value of n (without its sign).</p></div><div class="el"><p>Επιστρέφει την απόλυτη τιμή του n (χωρίς το πρόσημο).</p></div><pre>print abs(-5)</pre><pre class="out">5</pre><h2 id="int">INT</h2><p><span class="syn">INT(n)</span></p><div class="en"><p>Removes the fractional part of n (it cuts toward zero: INT(7.9) is 7 and INT(-7.9) is -7).</p></div><div class="el"><p>Αφαιρεί το δεκαδικό μέρος του n (κόβει προς το μηδέν: το INT(7.9) είναι 7 και το INT(-7.9) είναι -7).</p></div><pre>print int(7.9)
+print int(-7.9)</pre><pre class="out">7
+-7</pre><h2 id="mod">MOD</h2><p><span class="syn">a MOD b</span></p><div class="en"><p>Returns the remainder of dividing a by b.</p></div><div class="el"><p>Επιστρέφει το υπόλοιπο της διαίρεσης του a με το b.</p></div><pre>print 17 mod 5</pre><pre class="out">2</pre><h2 id="rnd">RND</h2><p><span class="syn">RND(1)</span></p><div class="en"><p>Returns a random number from 0 up to (but not including) 1. Multiply and use INT to get whole numbers in a range.</p></div><div class="el"><p>Επιστρέφει τυχαίο αριθμό από 0 έως (χωρίς να φτάνει το) 1. Πολλαπλασιάστε και χρησιμοποιήστε INT για ακέραιους σε εύρος.</p></div><pre>r = int(rnd(1) * 6) + 1
+if r &gt;= 1 and r &lt;= 6 then print &quot;dice ok&quot;</pre><pre class="out">dice ok</pre><h2 id="sin">SIN</h2><p><span class="syn">SIN(angle)</span></p><div class="en"><p>Returns the sine of an angle given in radians.</p></div><div class="el"><p>Επιστρέφει το ημίτονο γωνίας σε ακτίνια.</p></div><pre>print sin(0)</pre><pre class="out">0</pre><h2 id="sqr">SQR</h2><p><span class="syn">SQR(n)</span></p><div class="en"><p>Returns the square root of n.</p></div><div class="el"><p>Επιστρέφει την τετραγωνική ρίζα του n.</p></div><pre>print sqr(81)</pre><pre class="out">9</pre>
+<div class="foot">Freedom Basic help - build 652 - generated 2026-11-08</div></body></html>

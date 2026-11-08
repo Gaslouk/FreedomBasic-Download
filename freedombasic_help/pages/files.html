@@ -1,0 +1,139 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Files</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:1em auto;padding:0 1em;color:#222}
+h1{border-bottom:2px solid #08c}h2{margin-top:1.6em;border-bottom:1px solid #ccc}
+pre{background:#f4f4f4;padding:.6em;overflow:auto;border-left:3px solid #08c}
+pre.out{border-left-color:#2a2;background:#f0f8f0}.syn{font-family:Consolas,monospace;background:#eef;padding:.2em .4em}
+.el{display:none}body.lang-el .el{display:block}body.lang-el .en{display:none}
+nav a{margin-right:.8em}.foot{margin-top:3em;color:#777;font-size:.8em}.bar{float:right}
+.warn{color:#a50}</style><script>function L(l){document.body.className='lang-'+l}</script></head><body class="lang-en">
+<div class="bar"><a href="#" onclick="L('en');return false">English</a> | <a href="#" onclick="L('el');return false">Ελληνικά</a></div>
+<nav><a href="index.html">Index</a></nav><h1>Files</h1><h2 id="binary_files_put_get">BINARY files (PUT / GET)</h2><p><span class="syn">OPEN &quot;file&quot; FOR BINARY AS #n : PUT #n, position, a$ : GET #n, position, a$</span></p><div class="en"><p>A binary file is read and written byte by byte. PUT writes a variable at a position, SEEK moves, INPUT$ reads bytes back.</p></div><div class="el"><p>Ένα binary αρχείο διαβάζεται και γράφεται byte προς byte. Το PUT γράφει μια μεταβλητή σε μια θέση, το SEEK μετακινεί, το INPUT$ διαβάζει bytes.</p></div><pre>open &quot;b.bin&quot; for binary as #1
+a$ = &quot;ABCD&quot;
+put #1, 1, a$
+seek #1, 2
+print input$(#1, 2)
+close #1</pre><pre class="out">CD</pre><h2 id="bmpsave_loadbmp_unloadbmp">BMPSAVE / LOADBMP / UNLOADBMP</h2><p><span class="syn">BMPSAVE &quot;name&quot;,&quot;file.bmp&quot; / LOADBMP &quot;name&quot;,&quot;file.bmp&quot; / UNLOADBMP &quot;name&quot;</span></p><div class="en"><p>BMPSAVE saves an image held under a name to a .bmp file; LOADBMP loads a file under a name; UNLOADBMP frees it.</p></div><div class="el"><p>Το BMPSAVE αποθηκεύει μια εικόνα που έχει όνομα σε αρχείο .bmp· το LOADBMP φορτώνει αρχείο με όνομα· το UNLOADBMP την ελευθερώνει.</p></div><pre>nomainwin
+open &quot;g&quot; for graphics as #g
+print #g, &quot;fill red&quot;
+print #g, &quot;getbmp a 0 0 10 10&quot;
+bmpsave &quot;a&quot;, &quot;red.bmp&quot;
+loadbmp &quot;b&quot;, &quot;red.bmp&quot;
+unloadbmp &quot;b&quot;
+print &quot;saved&quot;</pre><pre class="out">saved</pre><h2 id="close">CLOSE</h2><p><span class="syn">CLOSE #n</span></p><div class="en"><p>Closes the file with handle #n and writes any pending data. Always close a file before reopening it.</p></div><div class="el"><p>Κλείνει το αρχείο με αριθμό #n και γράφει ό,τι εκκρεμεί. Κλείνε πάντα ένα αρχείο πριν το ξανανοίξεις.</p></div><pre>open &quot;c.txt&quot; for output as #1
+print #1, &quot;data&quot;
+close #1
+print &quot;closed&quot;</pre><pre class="out">closed</pre><h2 id="eof">EOF</h2><p><span class="syn">EOF(#n)</span></p><div class="en"><p>Returns 1 when the end of the file has been reached, otherwise 0. Use it to control a reading loop.</p></div><div class="el"><p>Επιστρέφει 1 όταν έχει φτάσει το τέλος του αρχείου, αλλιώς 0. Χρησιμοποίησέ το για να ελέγχεις βρόχο ανάγνωσης.</p></div><pre>open &quot;e.txt&quot; for output as #1
+print #1, 1
+print #1, 2
+print #1, 3
+close #1
+open &quot;e.txt&quot; for input as #1
+while eof(#1) = 0
+    input #1, a
+    total = total + a
+wend
+close #1
+print total</pre><pre class="out">6</pre><h2 id="files">FILES</h2><p><span class="syn">FILES path$, spec$, info$(</span></p><div class="en"><p>Lists the files that match spec$ in the folder path$. The array info$( is filled: info$(0,0) holds the number of files found and info$(1,0), info$(2,0)... hold their names. Note the open parenthesis after the array name.</p></div><div class="el"><p>Παραθέτει τα αρχεία του φακέλου path$ που ταιριάζουν στο spec$. Ο πίνακας info$( γεμίζει: το info$(0,0) έχει τον αριθμό των αρχείων και τα info$(1,0), info$(2,0)... τα ονόματα. Πρόσεξε την ανοιχτή παρένθεση μετά το όνομα του πίνακα.</p></div><pre>open &quot;fa.txt&quot; for output as #1
+close #1
+open &quot;fb.txt&quot; for output as #1
+close #1
+files &quot;.&quot;, &quot;f?.txt&quot;, i$(
+print val(i$(0, 0))
+for k = 1 to val(i$(0, 0))
+    print i$(k, 0)
+next k</pre><pre class="out">2
+fa.txt
+fb.txt</pre><h2 id="freefile">FREEFILE</h2><p><span class="syn">FREEFILE()</span></p><div class="en"><p>Returns the lowest file number that is not in use.</p></div><div class="el"><p>Επιστρέφει τον μικρότερο αριθμό αρχείου που δεν χρησιμοποιείται.</p></div><pre>print freefile()
+open &quot;f.txt&quot; for output as #1
+print freefile()
+close #1</pre><pre class="out">1
+2</pre><h2 id="input_hash">INPUT #</h2><p><span class="syn">INPUT #n, var1[, var2 ...]</span></p><div class="en"><p>Reads comma-separated values from a file into variables. Numeric variables read numbers, string variables read text (quotes optional).</p></div><div class="el"><p>Διαβάζει από αρχείο τιμές χωρισμένες με κόμμα και τις βάζει σε μεταβλητές. Οι αριθμητικές μεταβλητές διαβάζουν αριθμούς, οι αλφαριθμητικές κείμενο (τα εισαγωγικά είναι προαιρετικά).</p></div><pre>open &quot;i.txt&quot; for output as #1
+print #1, &quot;7,apple,2.5&quot;
+close #1
+open &quot;i.txt&quot; for input as #1
+input #1, n, f$, x
+print n; &quot; &quot;; f$; &quot; &quot;; x
+close #1</pre><pre class="out">7 apple 2.5</pre><h2 id="input_str">INPUT$</h2><p><span class="syn">INPUT$(#n, count)</span></p><div class="en"><p>Reads exactly count characters from an open file and returns them as a string.</p></div><div class="el"><p>Διαβάζει ακριβώς count χαρακτήρες από ανοιχτό αρχείο και τους επιστρέφει ως κείμενο.</p></div><pre>open &quot;s.txt&quot; for output as #1
+print #1, &quot;abcdefgh&quot;;
+close #1
+open &quot;s.txt&quot; for input as #1
+print input$(#1, 3)
+close #1</pre><pre class="out">abc</pre><h2 id="kill">KILL</h2><p><span class="syn">KILL &quot;file&quot;</span></p><div class="en"><p>Deletes a file.</p></div><div class="el"><p>Διαγράφει ένα αρχείο.</p></div><pre>open &quot;gone.txt&quot; for output as #1
+close #1
+kill &quot;gone.txt&quot;
+files &quot;.&quot;, &quot;gone.txt&quot;, i$(
+print val(i$(0, 0))</pre><pre class="out">0</pre><h2 id="line_input_hash">LINE INPUT #</h2><p><span class="syn">LINE INPUT #n, a$</span></p><div class="en"><p>Reads one whole line of a file into a$, commas included.</p></div><div class="el"><p>Διαβάζει ολόκληρη τη γραμμή του αρχείου στο a$, μαζί με τα κόμματα.</p></div><pre>open &quot;l.txt&quot; for output as #1
+print #1, &quot;one, two, three&quot;
+close #1
+open &quot;l.txt&quot; for input as #1
+line input #1, a$
+print a$
+close #1</pre><pre class="out">one, two, three</pre><h2 id="loc">LOC</h2><p><span class="syn">LOC(#n)</span></p><div class="en"><p>Returns the current read/write position of the open file.</p></div><div class="el"><p>Επιστρέφει την τρέχουσα θέση ανάγνωσης/εγγραφής του ανοιχτού αρχείου.</p></div><pre>open &quot;loc.txt&quot; for output as #1
+print #1, &quot;abcdefgh&quot;;
+close #1
+open &quot;loc.txt&quot; for input as #1
+a$ = input$(#1, 5)
+print loc(#1)
+close #1</pre><pre class="out">5</pre><h2 id="lof">LOF</h2><p><span class="syn">LOF(#n)</span></p><div class="en"><p>Returns the length of the open file in bytes. A line written with PRINT # includes its line break in the count.</p></div><div class="el"><p>Επιστρέφει το μήκος του ανοιχτού αρχείου σε bytes. Μια γραμμή που γράφτηκε με PRINT # περιλαμβάνει στο μήκος και την αλλαγή γραμμής.</p></div><pre>open &quot;len.txt&quot; for output as #1
+print #1, &quot;12345&quot;;
+close #1
+open &quot;len.txt&quot; for input as #1
+print lof(#1)
+close #1</pre><pre class="out">5</pre><h2 id="mkdir_rmdir">MKDIR / RMDIR</h2><p><span class="syn">MKDIR &quot;folder&quot; / RMDIR &quot;folder&quot;</span></p><div class="en"><p>MKDIR creates a folder, RMDIR removes an empty folder.</p></div><div class="el"><p>Το MKDIR δημιουργεί φάκελο, το RMDIR αφαιρεί άδειο φάκελο.</p></div><pre>mkdir &quot;newdir&quot;
+rmdir &quot;newdir&quot;
+print &quot;done&quot;</pre><pre class="out">done</pre><h2 id="name">NAME</h2><p><span class="syn">NAME &quot;old&quot; AS &quot;new&quot;</span></p><div class="en"><p>Renames a file.</p></div><div class="el"><p>Μετονομάζει ένα αρχείο.</p></div><pre>open &quot;old.txt&quot; for output as #1
+close #1
+name &quot;old.txt&quot; as &quot;new.txt&quot;
+files &quot;.&quot;, &quot;new.txt&quot;, i$(
+print i$(1, 0)</pre><pre class="out">new.txt</pre><h2 id="open">OPEN</h2><p><span class="syn">OPEN &quot;file&quot; FOR INPUT|OUTPUT|APPEND|BINARY|RANDOM AS #n</span></p><div class="en"><p>Opens a file and gives it a handle #n (1, 2, 3...). OUTPUT creates or empties the file, APPEND adds at the end, INPUT reads. Opening a missing file for INPUT stops the program with the error &quot;Cannot open file&quot;. Use FREEFILE to get an unused number.</p></div><div class="el"><p>Ανοίγει ένα αρχείο και του δίνει αριθμό #n (1, 2, 3...). Το OUTPUT δημιουργεί ή αδειάζει το αρχείο, το APPEND προσθέτει στο τέλος, το INPUT διαβάζει. Αν το αρχείο δεν υπάρχει και το ανοίξεις για INPUT, το πρόγραμμα σταματά με το σφάλμα &quot;Cannot open file&quot;. Το FREEFILE δίνει ελεύθερο αριθμό.</p></div><pre>open &quot;demo.txt&quot; for output as #1
+print #1, &quot;first&quot;
+close #1
+open &quot;demo.txt&quot; for append as #1
+print #1, &quot;second&quot;
+close #1
+open &quot;demo.txt&quot; for input as #1
+while eof(#1) = 0
+    line input #1, l$
+    print l$
+wend
+close #1</pre><pre class="out">first
+second</pre><h2 id="print_hash">PRINT #</h2><p><span class="syn">PRINT #n, expression[;|,expression...]</span></p><div class="en"><p>Writes text to an open file followed by a line break. A trailing semicolon suppresses the line break, so the next PRINT # continues on the same line.</p></div><div class="el"><p>Γράφει κείμενο σε ανοιχτό αρχείο και αλλαγή γραμμής. Ένα ερωτηματικό στο τέλος καταργεί την αλλαγή γραμμής, ώστε το επόμενο PRINT # να συνεχίσει στην ίδια γραμμή.</p></div><pre>open &quot;p.txt&quot; for output as #1
+print #1, &quot;a&quot;;
+print #1, &quot;b&quot;
+print #1, 42
+close #1
+open &quot;p.txt&quot; for input as #1
+line input #1, x$
+print x$
+line input #1, y$
+print y$
+close #1</pre><pre class="out">ab
+42</pre><h2 id="random_access_files_field_lset_rset_get_put">Random-access files (FIELD, LSET, RSET, GET, PUT)</h2><p><span class="syn">OPEN &quot;f&quot; FOR RANDOM AS #n LEN = size : FIELD #n, w AS a$, w2 AS b$ : LSET a$ = x$ : PUT #n, rec : GET #n, rec</span></p><div class="en"><p>A random-access file is a table of fixed-size records. FIELD names the pieces of a record. LSET (or RSET) puts text into a field, left (or right) aligned. PUT #n, rec writes the record number rec; GET #n, rec reads it. Without a record number the next record is used. LOF(#n) gives the file size in bytes.</p></div><div class="el"><p>Ένα αρχείο τυχαίας πρόσβασης είναι πίνακας από εγγραφές σταθερού μεγέθους. Το FIELD ονομάζει τα κομμάτια μιας εγγραφής. Το LSET (ή RSET) βάζει κείμενο σε πεδίο, με στοίχιση αριστερά (ή δεξιά). Το PUT #n, rec γράφει την εγγραφή rec· το GET #n, rec τη διαβάζει. Χωρίς αριθμό εγγραφής χρησιμοποιείται η επόμενη. Το LOF(#n) δίνει το μέγεθος του αρχείου σε bytes.</p></div><pre>open &quot;rr.dat&quot; for random as #1 len=10
+field #1, 4 as a$, 6 as b$
+lset a$ = &quot;ab&quot;
+lset b$ = &quot;cdef&quot;
+put #1, 1
+lset a$ = &quot;xy&quot;
+lset b$ = &quot;zz&quot;
+put #1, 3
+get #1, 1
+print trim$(a$); &quot;|&quot;; trim$(b$)
+get #1, 3
+print trim$(a$); &quot;|&quot;; trim$(b$)
+print lof(#1)
+close #1</pre><pre class="out">ab|cdef
+xy|zz
+30</pre><h2 id="seek">SEEK</h2><p><span class="syn">SEEK #n, position</span></p><div class="en"><p>Moves the file position, so the next read or write starts there. Position 1 is the first byte.</p></div><div class="el"><p>Μετακινεί τη θέση του αρχείου ώστε η επόμενη ανάγνωση ή εγγραφή να ξεκινά από εκεί. Η θέση 1 είναι το πρώτο byte.</p></div><pre>open &quot;k.txt&quot; for output as #1
+print #1, &quot;abcdefgh&quot;;
+close #1
+open &quot;k.txt&quot; for input as #1
+seek #1, 3
+print input$(#1, 2)
+close #1</pre><pre class="out">de</pre><h2 id="write_hash">WRITE #</h2><p><span class="syn">WRITE #n, expression[, expression ...]</span></p><div class="en"><p>Writes values separated by commas, with strings in quotes. Freedom writes &quot;, &quot; (comma and space) between values.</p></div><div class="el"><p>Γράφει τιμές χωρισμένες με κόμμα, με τα κείμενα σε εισαγωγικά. Το Freedom γράφει &quot;, &quot; (κόμμα και κενό) ανάμεσα στις τιμές.</p></div><pre>open &quot;w.txt&quot; for output as #1
+write #1, &quot;a&quot;, 5
+close #1
+open &quot;w.txt&quot; for input as #1
+line input #1, x$
+print x$
+close #1</pre><pre class="out">&quot;a&quot;, 5</pre>
+<div class="foot">Freedom Basic help - build 652 - generated 2026-11-08</div></body></html>
