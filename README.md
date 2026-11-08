@@ -14,6 +14,7 @@ Get the latest files from the [Releases](../../releases) page:
 | `FreedomBasic32.exe` | The IDE, 32-bit |
 | `FreedomBasic_Linux_b638.tar.gz` | Linux (x86-64): runs programs, includes the Designer, no editor window |
 | `FreedomDesigner.1.42_LB.zip` | The form designer, with its `icons` folder |
+| `freedombasic_help.zip` | Offline help (English and Greek), open `pages/index.html`; also in the `freedombasic_help` folder of this repository |
 
 No installation is needed, and the Microsoft Visual C++ Redistributable is **not** required. Save the exe anywhere and run it.
 
